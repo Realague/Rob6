@@ -69,3 +69,30 @@ What happens instead?
 Please provide any additional information below.
 Attach a screenshot if possible
 ```
+
+	How to use Unity3D for Rob.6
+
+Basics :
+
+First : Build a map with platform prefabs and place your Rob
+Second : You must delete the default main camera and add the prefabs named  < main camera >. In the inspetcor search the script <camera change> and in <current> drag and drop the first Rob on your scene (the start rob)
+
+Third : Add the <playerManager> prefabs too your scene. Then find in the inspector the <cursor> script and drag and drop the <main camera> in the <cam> tab. Do the same with your start rob on the <spawn> tab.
+Click on <players> and note in the <size> tab the number of rob in your scene and then fill the array by draging and droping all your robs in the array’s tabs ;  
+
+Fourth : add the <gameControl> preafab to your scene
+
+Pause menu :
+Add the <pause menu> prefab to your scene  and ine the <Menu> tab drag and dope <pauseMenu> child.
+
+Lights :
+To add lights on your scene you must first go to the <window> tab and select the <lighting> and <settings>. Choose black as the <Ambiant color>
+
+Now drag and drop some lights prefabs . If you want an inside light choose the <inside> layer on the Culling mask and if you want an outside light choose the <outside> layer on the culling mask
+(if you want an object to be inside or outside juste select the matching layer on your gameObject)
+
+Different Robs :
+Every robs :
+Drab and drop th <nb scrap> text from the <pause menu> too the <nb scrap> tab on the <player controller> scripts
+In the <rob.h> tab on the same script, enter the number on <rob.h> in your scene and fill the array with all <your rob.h>
+
