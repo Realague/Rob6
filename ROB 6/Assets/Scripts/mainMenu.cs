@@ -3,16 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/**
+ * MainMenu.
+ *
+ * @author Rémi Wickuler
+ * @author Julien Delane
+ * @version 17.10.11
+ * @since 17.10.10
+ */
 public class mainMenu : MonoBehaviour {
 
+    /**
+     * The position of the cursor.
+     *
+     * @since 17.10.10
+     */
     private int i = 0;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
+    /**
+     * Check if the key to move the cursor position are pressed then call the method to move the cursor and call the select method.
+     *
+     * @since 17.10.10
+     */
 	void Update () {
         if (Input.GetKeyDown("s"))
             i++;
@@ -26,7 +38,11 @@ public class mainMenu : MonoBehaviour {
         select();
     }
 
-
+    /**
+     * Move the cursor.
+     *
+     * @since 17.10.10
+     */
     void cursorPosition()
     {
         if (i == 0)
@@ -37,6 +53,11 @@ public class mainMenu : MonoBehaviour {
             transform.position = new Vector2(4, -3.5f);
     }
 
+    /**
+     * Check if the player select an option and do it.
+     *
+     * @since 17.10.10
+     */
     void select()
     {
         if (Input.GetKeyDown("space"))

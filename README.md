@@ -1,7 +1,7 @@
 # Rob6
 2D game develop using unity
 
-## Basic guide good practice
+## Basic good practice guide
 
 ### Code formatting
 

@@ -3,44 +3,115 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/**
+ * Cursor.
+ *
+ * @author Rémi Wickuler
+ * @author Julien Delane
+ * @version 17.10.11
+ * @since 17.10.05
+ */
+ //TODO: rework the player manager inventory in this script??
 public class cursor : MonoBehaviour {
 
+    /**
+     * The camera.
+     *
+     * @since 17.10.05
+     */
     public Camera cam;
+
+    /**
+     * The rigid body 2d.
+     *
+     * @since 17.10.05
+     */
     public static Rigidbody2D rb;
+
+    /**
+     * The object spawn.
+     *
+     * @since 17.10.05
+     */
     public GameObject spawn;
+
+    /**
+     * Current rob.
+     *
+     * @since 17.10.05
+     */
     public static GameObject current;
+
+    /**
+     * The list of rob.
+     *
+     * @since 17.10.05
+     */
     public GameObject[] players;
+
+    /**
+     * The list of sprite.
+     *
+     * @since 17.10.05
+     */
     private SpriteRenderer[] signals;
+
+    /**
+     * The camera.
+     *
+     * @since 17.10.05
+     */
     public static SpriteRenderer stock;
+
+    /**
+     * The camera.
+     *
+     * @since 17.10.05
+     */
     private float timer;
+
+    /**
+     * Speed of the trail.
+     *
+     * @since 17.10.05
+     */
     private float speed = 2f;
+
+    /**
+     * The alpha of he trail.
+     *
+     * @since 17.10.05
+     */
     private float alpha = 1;
+
+    /**
+     * The camera.
+     *
+     * @since 17.10.05
+     */
     private bool positive = false;
+
+    /**
+     * The camera.
+     *
+     * @since 17.10.05
+     */
     public static GameObject[] allPlayers;
 
-    /* 
-    ** ceci est la variable qui stock tout les inventaires de nos rob 
-    ** chaque case du dictionnaire contient une liste de gamobject qui est 
-    ** l'inventaire individuel des rob, les clé du dictionnaire sont les
-    ** nom des rob 
-    ** 
-    ** @author              Rémi Wickuler
-    ** @last update date    05/10/2017
-    ** @creation date       05/10/2017
-    */
-
+    /**
+     * Map which contain inventory of all rob every case contains a list of game object which is the individual inventory of the rob,
+     * keys are the name of the rob.
+     *
+     * @since 17.10.05
+     */
     public static Dictionary<string, List<GameObject>> inventory = null;
 
-    /*
-    ** met le cursuer en invisible, initialise le rob du debut, 
-    ** désactive le logo "no signal" et permet d'igniorer les colision entre rob
-    ** et initialisation de l'inventaire
-    **
-    ** @author              Rémi Wickuler
-    ** @last update date    05/10/2017
-    ** @creation date       05/10/2017
-    */
-
+    /**
+     * Set the cursor to invisible, initialize the starting rob,
+     * disable the "no signal" logo and allow to ignore collision between rob and init the inventory.
+     *
+     * @since 17.10.05
+     */
     void Start() {
         if (SceneManager.GetActiveScene().buildIndex >= gameControl.level)
         {
@@ -68,15 +139,11 @@ public class cursor : MonoBehaviour {
         }
 	}
 	
-    /*
-    ** gere le changement de personnage en prenant en charge les problemes de layers 
-    ** et en mettant une limite de distance
-    **
-    ** @author              Rémi Wickuler
-    ** @last update date    05/10/2017
-    ** @creation date       05/10/2017
-    */
-
+    /**
+     * Manage character change, fix the layers problem and set a limited distance.
+     *
+     * @since 17.10.05
+     */
 	void Update () {
         int layer;
         float closer = 100;
@@ -123,14 +190,11 @@ public class cursor : MonoBehaviour {
         flash();
     }
 
-    /*
-    ** fait clignoter le sprite no sgnial
-    **
-    ** @author              Rémi Wickuler
-    ** @last update date    05/10/2017
-    ** @creation date       05/10/2017
-    */
-
+    /**
+     * Make the signal sprite flash.
+     *
+     * @since 17.10.05
+     */
     void flash()
     {
         if (timer > Time.time)

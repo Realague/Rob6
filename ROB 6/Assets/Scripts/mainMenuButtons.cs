@@ -66,7 +66,7 @@ public class mainMenuButtons : MonoBehaviour
         action = 4;
     }
 
-    //play the sound and init var for the update function\\
+    //play the sound and init var for the update function
     void pressed()
     {
         AudioSource.PlayClipAtPoint(button_sound, transform.position);

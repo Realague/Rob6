@@ -4,32 +4,164 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+/**
+ * PlayerController.
+ *
+ * @author Rémi Wickuler
+ * @author Julien Delane
+ * @version 17.10.10
+ * @since 17.10.10
+ */
 public class playerController : MonoBehaviour
 {
+    /**
+     * Player.
+     *
+     * @since 17.10.10
+     */
     private Rigidbody2D rb;
+
+    /**
+     * Right foot.
+     *
+     * @since 17.10.10
+     */
     private Transform groundCheck;
+
+    /**
+     * Left foot.
+     *
+     * @since 17.10.10
+     */
     private Transform groundCheck2;
+
+    /**
+     * If the player jump.
+     *
+     * @since 17.10.10
+     */
     private bool jump;
+
+    /**
+     * If the player is on the ground.
+     *
+     * @since 17.10.10
+     */
     private bool grounded = true;
+
+    /**
+     * The number of jump the has done without hit the ground.
+     *
+     * @unityParam
+     * @since 17.10.10
+     */
     public int jumpCount;
+
+    /**
+     * Jump force.
+     *
+     * @unityParam
+     * @since 17.10.10
+     */
     public float jumpForce = 1.0F;
+
+    /**
+     * Player speed.
+     *
+     * @unityParam
+     * @since 17.10.10
+     */
     public float speed = 1.0F;
+
+    /**
+     * Jump speed.
+     *
+     * @unityParam
+     * @since 17.10.10
+     */
     public float jumpspeed = 1.0F;
+
+    /**
+     * Number of jump the player can performed without hit the ground.
+     *
+     * @unityParam
+     * @since 17.10.10
+     */
     public int maxJump = 2;
+
+    /**
+     * Define which layer is ground.
+     *
+     * @unityParam
+     * @since 17.10.10
+     */
     public LayerMask whatIsGround;
+
+    /**
+     * List of sound we can play when he walk jump etc.
+     *
+     * @unityParam
+     * @since 17.10.10
+     */
     public AudioClip[] sounds;
+
+    /**
+     * Define if the player is facing right or left.
+     *
+     * @unityParam
+     * @since 17.10.10
+     */
     public static bool facingRight = true;
+
+    /**
+     * The direction the player move.
+     *
+     * @unityParam
+     * @since 17.10.10
+     */
     public static float x;
+
+    /**
+     * Animator.
+     *
+     * @unityParam
+     * @since 17.10.10
+     */
     public static Animator anim;
+
+    /**
+     * Define if the player is alive.
+     *
+     * @unityParam
+     * @since 17.10.10
+     */
     public static bool death = false;
+
+    /**
+     * The number of scrap the player got.
+     *
+     * @unityParam
+     * @since 17.10.10
+     */
     public Text nbScrap;
+
     private int nb = 0;
     public static GameObject fly;
     public GameObject[] rob_H;
+
+    /**
+     * Define if the player can run.
+     *
+     * @since 17.10.10
+     */
     private bool run = false;
     public static bool stop = false;
 
-    // Use this for initialization
+    /**
+     * Init the variable at the beginning of the level.
+     *
+     * @since 17.10.10
+     */
     void Start()
     {
         fly = null;
@@ -41,7 +173,11 @@ public class playerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
+    /**
+     * Do all the player action when he pressed the associated key.
+     *
+     * @since 17.10.10
+     */
     void Update()
     {
         if (stop == false)
@@ -88,6 +224,11 @@ public class playerController : MonoBehaviour
         }
     }
 
+    /**
+     * Init the variable at the beginning of the level.
+     *
+     * @since 17.10.10
+     */
     void takeRob_H()
     {
         float closer = 100;
@@ -110,7 +251,12 @@ public class playerController : MonoBehaviour
             }
         }
     }
-    
+
+    /**
+     * Flip the player sprite if the direction change.
+     *
+     * @since 17.10.10
+     */
     void Flip()
     {
         Vector3 theScale = transform.localScale;
@@ -124,7 +270,11 @@ public class playerController : MonoBehaviour
         }
     }
 
-
+    /**
+     * Jump management.
+     *
+     * @since 17.10.10
+     */
     void FixedUpdate()
     {
         if (stop == false)
@@ -153,6 +303,12 @@ public class playerController : MonoBehaviour
         }
     }
 
+    /**
+     * If the ground is not flat rotate the rob to match with the ground rotation.
+     *
+     * @param coll ground
+     * @since 17.10.10
+     */
     void OnCollisionEnter2D(Collision2D coll)
     {
         if (coll.gameObject.tag == "ground")
@@ -161,12 +317,24 @@ public class playerController : MonoBehaviour
         }
     }
 
+    /**
+     * Ignore collision with scrap.
+     *
+     * @param coll scrap
+     * @since 17.10.10
+     */
     void OnTriggerEnter2D(Collider2D coll)
     {
         if (coll.gameObject.tag == "scrap")
              Physics2D.IgnoreCollision(this.gameObject.GetComponent<BoxCollider2D>(), coll.GetComponent<PolygonCollider2D>(), true);
     }
 
+    /**
+     * Get the scrap if the player collide with it and press the action key.
+     *
+     * @param coll scrap
+     * @since 17.10.10
+     */
     void OnTriggerStay2D(Collider2D coll)
     {
         if (cursor.current == this.gameObject)
@@ -184,6 +352,12 @@ public class playerController : MonoBehaviour
         }
     }
 
+    /**
+     * If the ground is not flat rotate the rob to match with the ground rotation.
+     *
+     * @param coll ground
+     * @since 17.10.10
+     */
     void OnCollisionStay2D(Collision2D coll)
     {
         if (cursor.current == this.gameObject)
