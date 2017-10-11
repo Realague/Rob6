@@ -3,23 +3,74 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/**
+ * PauseMenu.
+ *
+ * @author Julien Delane
+ * @version 17.10.10
+ * @since 17.10.10
+ */
 public class pauseMenu : MonoBehaviour
 {
+    /**
+     * If pause menu is displayed.
+     *
+     * @since 17.10.10
+     */
     private bool show_pause_menu = false;
+
+    /**
+     * Time to wait before the menu open/close.
+     *
+     * @since 17.10.10
+     */
     private float wait = 1.5f;
+
+    /**
+     * If the button is pressed.
+     *
+     * @since 17.10.10
+     */
     private bool pressed = false;
+
+    /**
+     * If the pause key is pressed.
+     *
+     * @since 17.10.10
+     */
     private bool is_pressed = false;
 
+    /**
+     * Menu to show.
+     *
+     * @unityParam
+     * @since 17.10.10
+     */
     public GameObject canvas;
+
+    /**
+     * Sound to play when open the menu.
+     *
+     * @unityParam
+     * @since 17.10.10
+     */
     public AudioClip sound;
 
-    // Use this for initialization
+    /**
+     * Init the menu to invisible.
+     *
+     * @since 17.10.10
+     */
     void Start ()
     {
         canvas.SetActive(false);
 	}
 	
-	// Update is called once per frame
+    /**
+     * Play a sound and display the mnu if the pause key is pressed.
+     *
+     * @since 17.10.10
+     */
 	void Update ()
     {
 
@@ -65,17 +116,32 @@ public class pauseMenu : MonoBehaviour
         }
     }
 
+    /**
+     * Check if the continue button is pressed.
+     *
+     * @since 17.10.10
+     */
     public void returnToMenu()
     {
         unpaused();
         Pressed();
     }
 
+    /**
+     * Continue the game.
+     *
+     * @since 17.10.10
+     */
     public void unpaused()
     {
         show_pause_menu = !show_pause_menu;
     }
 
+    /**
+     * If a button in the menu is pressed play a sound and continue the game.
+     *
+     * @since 17.10.10
+     */
     void Pressed()
     {
         AudioSource.PlayClipAtPoint(sound, transform.position);

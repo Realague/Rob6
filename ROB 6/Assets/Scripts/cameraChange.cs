@@ -2,23 +2,66 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * CameraChange.
+ *
+ * @author Rémi Wickuler
+ * @author Julien Delane
+ * @version 17.10.11
+ * @since 17.10.05
+ */
 public class cameraChange : MonoBehaviour {
 
-   float timer;
-   float speed = 0.3f;
-   private Vector3 offset;
-   private Camera cam;
-   public GameObject current;
-   private TrailRenderer trail;   
-
-    /* 
-    ** Initialise le trail et la camera
-    **
-    ** @author              Rémi Wickuler
-    ** @last update date    05/10/2017
-    ** @creation date       05/10/2017
+   /**
+    * Timer until camera move.
+    *
+    * @unityParam
+    * @since 17.10.10
     */
+   float timer;
 
+   /**
+    * Speed of the trail.
+    *
+    * @unityParam
+    * @since 17.10.10
+    */
+   float speed = 0.3f;
+
+   /**
+    * Path to reach the targeted rob.
+    *
+    * @since 17.10.10
+    */
+   private Vector3 offset;
+
+   /**
+    * Camera to move.
+    *
+    * @since 17.10.10
+    */
+   private Camera cam;
+
+   /**
+    * GameObject.
+    *
+    * @unityParam
+    * @since 17.10.10
+    */
+   public GameObject current;
+
+   /**
+    * TrailRenderer.
+    *
+    * @since 17.10.10
+    */
+   private TrailRenderer trail;
+
+    /**
+     * Initialize the trail and the camera.
+     *
+     * @since 17.10.05
+     */
     void Start()
     {
         trail = GetComponentInChildren<TrailRenderer>();
@@ -28,14 +71,11 @@ public class cameraChange : MonoBehaviour {
         cam = GetComponent<Camera>();
     }
 
-    /* 
-    ** zomm et dezoom de la camera avec tab
-    **  
-    ** @author              Rémi Wickuler
-    ** @last update date    05/10/2017
-    ** @creation date       05/10/2017
-    */
-
+    /**
+     * Zoom in and zoom out of the camera with tab.
+     *
+     * @since 17.10.05
+     */
     void Update()
     {
         if (playerController.stop == false)
@@ -47,15 +87,12 @@ public class cameraChange : MonoBehaviour {
             moveCamera();
         }
     }
-    
-    /* 
-    ** dplacement leger de la camera avec leftControl
-    ** 
-    ** @author              Rémi Wickuler
-    ** @last update date    05/10/2017
-    ** @creation date       05/10/2017
-    */
 
+    /**
+     * Small movement of the camera with the left control key.
+     *
+     * @since 17.10.05
+     */
     void moveCamera()
     {
         if (Input.GetKey(KeyCode.LeftControl))
@@ -79,14 +116,11 @@ public class cameraChange : MonoBehaviour {
         }
     }
 
-    /* 
-    ** remise de la camera a sa position initiale
-    ** 
-    ** @author              Rémi Wickuler
-    ** @last update date    05/10/2017
-    ** @creation date       05/10/2017
+   /**
+    * Manage the camera movement.
+    *
+    * @since 17.10.05
     */
-
    void LateUpdate()
     {
         if (playerController.stop == false)

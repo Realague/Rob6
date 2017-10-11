@@ -2,28 +2,61 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * Launcher.
+ *
+ * @author Rémi Wickuler
+ * @author Julien Delane
+ * @version 17.10.11
+ * @since 17.10.10
+ */
 public class launcher : MonoBehaviour {
 
+    /**
+     * The spawn point.
+     *
+     * @unityParam
+     * @since 17.10.10
+     */
     public GameObject spawn;
+
+    /**
+     * The object to render when launch.
+     *
+     * @since 17.10.10
+     */
     private SpriteRenderer sprite;
+
+    /**
+     * The sprite of the launch rob.
+     *
+     * @since 17.10.10
+     */
     private SpriteRenderer spriteRob;
+
+    /**
+     * The list of robs.
+     *
+     * @unityParam
+     * @since 17.10.10
+     */
     public GameObject[] Robs;
 
+    /**
+     * Init the object sprite and the sprite of rob.
+     *
+     * @since 17.10.10
+     */
 	void Start () {
         sprite = GetComponentInChildren<SpriteRenderer>();
         spriteRob = GetComponentInParent<SpriteRenderer>();
     }
 	
-
-    /*
-    ** récupere les scrap et les lance 
-    **
-    ** @author              Rémi Wickuler
-    ** @last update date    05/10/2017
-    ** @creation date       05/10/2017
-    */
-
-
+    /**
+     * Get the object and launch it.
+     *
+     * @since 17.10.10
+     */
 	void Update () {
         if (sprite.sortingOrder < spriteRob.sortingOrder)
             sprite.sortingOrder = spriteRob.sortingOrder + 1;
