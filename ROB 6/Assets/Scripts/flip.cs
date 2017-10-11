@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+ //TODO: Doc
 public class flip : MonoBehaviour
 {
+
     private BoxCollider2D[] colliders;
 
     public GameObject spawnPlat;
 
-    // Use this for initialization
     void Start()
     {
         if (cursor.current.transform.localScale.x < 0)

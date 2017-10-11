@@ -3,18 +3,45 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/**
+ * MoveCursor.
+ *
+ * @author Rémi Wickuler
+ * @author Julien Delane
+ * @version 17.10.11
+ * @since 17.10.11
+ */
 public class moveCursor : MonoBehaviour {
 
+    /**
+     * Index in the menu.
+     *
+     * @since 17.10.11
+     */
     private int i = 0;
+
+    /**
+     * Define if the menu is open or close.
+     *
+     * @unityParam
+     * @since 17.10.11
+     */
     public static bool close;
 
-	// Use this for initialization
+    /**
+     * Set the menu to open.
+     *
+     * @since 17.10.11
+     */
 	void Start () {
         close = false;
-		
 	}
 	
-	// Update is called once per frame
+    /**
+     * Move the cursor position when press the correspondent key.
+     *
+     * @since 17.10.11
+     */
 	void Update () {
         if (Input.GetKeyDown(KeyCode.Z))
             i--;

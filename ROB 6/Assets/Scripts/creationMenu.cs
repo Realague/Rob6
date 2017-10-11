@@ -3,23 +3,74 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/**
+ * CreationMenu.
+ *
+ * @author Rémi Wickuler
+ * @author Julien Delane
+ * @version 17.10.11
+ * @since 17.10.05
+ */
 public class creationMenu : MonoBehaviour {
 
+    /**
+     * Menu canvas.
+     *
+     * @since 17.10.10
+     */
     private Canvas can;
+
+    /**
+     * GameObject selected.
+     *
+     * @unityParam
+     * @since 17.10.10
+     */
     public GameObject select;
+
+    /**
+     * List of GameObject player can create.
+     *
+     * @unityParam
+     * @since 17.10.10
+     */
     public GameObject[] create;
+
+    /**
+     * List of price to create object.
+     *
+     * @unityParam
+     * @since 17.10.10
+     */
     public int[] price;
+
+    /**
+     * Index of the cursor.
+     *
+     * @since 17.10.10
+     */
     private int index = 0;
+
+    /**
+     * List of object image.
+     *
+     * @since 17.10.10
+     */
     private Image[] images;
+
+    /**
+     * Rob where he will be create.
+     *
+     * @unityParam
+     * @since 17.10.10
+     */
     public GameObject spawnPoint;
     
-    /*
-    ** Initialise la camera et les sprite pour les images
-    ** 
-	** @author              Rémi Wickuler
-    ** @last update date    05/10/2017
-    ** @creation date       05/10/2017
-    */
+    /**
+     * Initialize the camera and sprites for the image.
+     * 
+     * @since 17.10.05
+     */
 	void Start () {
         can = GetComponent<Canvas>();
         can.enabled = false;
@@ -28,13 +79,11 @@ public class creationMenu : MonoBehaviour {
         images[2].sprite = create[1].GetComponentInChildren<SpriteRenderer>().sprite;
     }
 	
-	/*  
-    ** gere le menu de création (curseur et sélection de l objet)
-    **
-    ** @author              Rémi Wickuler
-    ** @last update date    05/10/2017
-    ** @creation date       05/10/2017
-    */
+	/**
+     * Manage the creation menu (cursor and selection of object).
+     *
+     * @since 17.10.05
+     */
 	void Update() { 
          if (can.enabled == true)
         {

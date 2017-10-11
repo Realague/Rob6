@@ -3,18 +3,45 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/**
+ * PauseMenu.
+ *
+ * @author Julien Delane
+ * @version 17.10.11
+ * @since 17.10.11
+ */
 public class pause_Menu : MonoBehaviour {
 
+    /**
+     * The menu.
+     *
+     * @unityParam
+     * @since 17.10.11
+     */
     public GameObject menu;
+
+    /**
+     * Define if the menu is hidden or not.
+     *
+     * @since 17.10.11
+     */
     private bool active;
 
-    // Use this for initialization
+    /**
+     * Hide the menu when the level start.
+     *
+     * @since 17.10.11
+     */
     void Start () {
         menu.SetActive(false);
         active = false;
     }
 	
-	// Update is called once per frame
+    /**
+     * Catch the different action in the pause menu.
+     *
+     * @since 17.10.11
+     */
 	void Update () {
         if (Input.GetKeyDown(KeyCode.Escape) && active == false)
         {
