@@ -1,0 +1,4 @@
+
+LANGUAGE.NAME=English
+LANGUAGE.REGION=United States
+LANGUAGE.CODE=en_us
