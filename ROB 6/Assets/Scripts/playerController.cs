@@ -12,7 +12,7 @@ using UnityEngine.SceneManagement;
  * @version 17.10.10
  * @since 17.10.10
  */
-public class playerController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     /**
      * Player.
@@ -26,14 +26,14 @@ public class playerController : MonoBehaviour
      *
      * @since 17.10.10
      */
-    private Transform groundCheck;
+    private Transform groundCheckRight;
 
     /**
      * Left foot.
      *
      * @since 17.10.10
      */
-    private Transform groundCheck2;
+    private Transform groundCheckLeft;
 
     /**
      * If the player jump.
@@ -162,14 +162,14 @@ public class playerController : MonoBehaviour
      *
      * @since 17.10.10
      */
-    void Start()
+    private void Start()
     {
         fly = null;
         jumpCount = 0;
         jump = false;
         facingRight = true;
-        groundCheck = transform.Find("GroundCheck");
-        groundCheck2 = transform.Find("GroundCheck2");
+        groundCheckRight = transform.Find("GroundCheck");
+        groundCheckLeft = transform.Find("GroundCheck2");
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -178,14 +178,14 @@ public class playerController : MonoBehaviour
      *
      * @since 17.10.10
      */
-    void Update()
+    private void Update()
     {
         if (stop == false)
         {
             nb = 0;
-            if (cursor.inventory[transform.name] != null)
+            if (PlayerManager.inventory[transform.name] != null)
             {
-                nb = cursor.inventory[transform.name].Count;
+                nb = PlayerManager.inventory[transform.name].Count;
             }
             nbScrap.text = "= " + nb.ToString();
             if (Input.GetKey(KeyCode.D))
@@ -220,7 +220,7 @@ public class playerController : MonoBehaviour
             if (jump == true)
                 transform.rotation = new Quaternion(0, 0, 0, 0);
             if (transform.name == "Rob.L")
-                takeRob_H();
+                takeRobH();
         }
     }
 
@@ -229,7 +229,7 @@ public class playerController : MonoBehaviour
      *
      * @since 17.10.10
      */
-    void takeRob_H()
+    private void takeRobH()
     {
         float closer = 100;
         GameObject stock = null;
@@ -257,16 +257,16 @@ public class playerController : MonoBehaviour
      *
      * @since 17.10.10
      */
-    void Flip()
+    private void Flip()
     {
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
-        if (cursor.stock != null)
+        if (PlayerManager.stock != null)
         {
-            theScale = cursor.stock.transform.localScale;
+            theScale = PlayerManager.stock.transform.localScale;
             theScale.x *= -1;
-            cursor.stock.transform.localScale = theScale;
+            PlayerManager.stock.transform.localScale = theScale;
         }
     }
 
@@ -275,12 +275,12 @@ public class playerController : MonoBehaviour
      *
      * @since 17.10.10
      */
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         if (stop == false)
         {
             //check if the player is on the ground\\
-            grounded = Physics2D.Linecast(groundCheck2.position, groundCheck.position, whatIsGround);
+            grounded = Physics2D.Linecast(groundCheckLeft.position, groundCheckRight.position, whatIsGround);
             if (grounded)
             {
                 jumpCount = 0;
@@ -306,48 +306,50 @@ public class playerController : MonoBehaviour
     /**
      * If the ground is not flat rotate the rob to match with the ground rotation.
      *
-     * @param coll ground
+     * @param collision ground
      * @since 17.10.10
      */
-    void OnCollisionEnter2D(Collision2D coll)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (coll.gameObject.tag == "ground")
+        if (collision.gameObject.tag == "ground")
         {
-            transform.rotation = new Quaternion(coll.transform.rotation.x, coll.transform.rotation.y, coll.transform.rotation.z, coll.transform.rotation.w);
+            transform.rotation = new Quaternion(collision.transform.rotation.x, collision.transform.rotation.y, collision.transform.rotation.z, collision.transform.rotation.w);
         }
     }
 
     /**
      * Ignore collision with scrap.
      *
-     * @param coll scrap
+     * @param collider scrap
      * @since 17.10.10
      */
-    void OnTriggerEnter2D(Collider2D coll)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (coll.gameObject.tag == "scrap")
-             Physics2D.IgnoreCollision(this.gameObject.GetComponent<BoxCollider2D>(), coll.GetComponent<PolygonCollider2D>(), true);
+        if (collider.gameObject.tag == "scrap")
+        {
+             Physics2D.IgnoreCollision(this.gameObject.GetComponent<BoxCollider2D>(), collider.GetComponent<PolygonCollider2D>(), true);
+        }
     }
 
     /**
      * Get the scrap if the player collide with it and press the action key.
      *
-     * @param coll scrap
+     * @param collider scrap
      * @since 17.10.10
      */
-    void OnTriggerStay2D(Collider2D coll)
+    private void OnTriggerStay2D(Collider2D collider)
     {
-        if (cursor.current == this.gameObject)
+        if (PlayerManager.current == this.gameObject)
         {
-            if (coll.gameObject.tag == "scrap" && Input.GetKeyDown(KeyCode.F))
+            if (collider.gameObject.tag == "scrap" && Input.GetKeyDown(KeyCode.F))
             {
-                Physics2D.IgnoreCollision(this.gameObject.GetComponent<BoxCollider2D>(), coll.GetComponent<PolygonCollider2D>(), true);
-                if (cursor.inventory[transform.name] == null)
+                Physics2D.IgnoreCollision(this.gameObject.GetComponent<BoxCollider2D>(), collider.GetComponent<PolygonCollider2D>(), true);
+                if (PlayerManager.inventory[transform.name] == null)
                 {
-                    cursor.inventory[transform.name] = new List<GameObject>();
+                    PlayerManager.inventory[transform.name] = new List<GameObject>();
                 }
-                cursor.inventory[transform.name].Add(coll.gameObject);
-                coll.gameObject.SetActive(false);
+                PlayerManager.inventory[transform.name].Add(collider.gameObject);
+                collider.gameObject.SetActive(false);
             }
         }
     }
@@ -355,22 +357,23 @@ public class playerController : MonoBehaviour
     /**
      * If the ground is not flat rotate the rob to match with the ground rotation.
      *
-     * @param coll ground
+     * @param collision ground
      * @since 17.10.10
      */
-    void OnCollisionStay2D(Collision2D coll)
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        if (cursor.current == this.gameObject)
+        if (PlayerManager.current == this.gameObject)
         {
-            if (coll.gameObject.tag == "ground")
+            if (collision.gameObject.tag == "ground")
             {
-                transform.rotation = new Quaternion(coll.transform.rotation.x, coll.transform.rotation.y, coll.transform.rotation.z, coll.transform.rotation.w);
+                transform.rotation = new Quaternion(collision.transform.rotation.x, collision.transform.rotation.y, collision.transform.rotation.z, collision.transform.rotation.w);
             }
-            else if (coll.gameObject.tag == "door")
+            else if (collision.gameObject.tag == "door")
             {
                 
-                transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, (coll.transform.rotation.z + 0.4f) * -1, transform.rotation.w);
+                transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, (collision.transform.rotation.z + 0.4f) * -1, transform.rotation.w);
             }
         }
     }
+
 }

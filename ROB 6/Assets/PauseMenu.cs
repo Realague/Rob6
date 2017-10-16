@@ -7,11 +7,11 @@ using UnityEngine.UI;
  * PauseMenu.
  *
  * @author Julien Delane
- * @version 17.10.11
+ * @version 17.10.15
  * @since 17.10.11
  */
-public class pause_Menu : MonoBehaviour {
-
+public class PauseMenu : MonoBehaviour
+{
     /**
      * The menu.
      *
@@ -32,7 +32,8 @@ public class pause_Menu : MonoBehaviour {
      *
      * @since 17.10.11
      */
-    void Start () {
+    private void Start()
+    {
         menu.SetActive(false);
         active = false;
     }
@@ -42,21 +43,23 @@ public class pause_Menu : MonoBehaviour {
      *
      * @since 17.10.11
      */
-	void Update () {
+	private void Update()
+    {
         if (Input.GetKeyDown(KeyCode.Escape) && active == false)
         {
             Time.timeScale = 0;
-            moveCursor.close = false;
+            MoveCursor.close = false;
             menu.SetActive(true);
             active = true;
-            playerController.stop = true;
+            PlayerController.stop = true;
         }
-       else if (Input.GetKeyDown(KeyCode.Escape) && active == true || moveCursor.close == true)
+       else if (Input.GetKeyDown(KeyCode.Escape) && active == true || MoveCursor.close == true)
         {
             Time.timeScale = 1;
             menu.SetActive(false);
             active = false;
-            playerController.stop = false;
+            PlayerController.stop = false;
         }
     }
+
 }

@@ -7,14 +7,15 @@ using UnityEngine;
  *
  * @author Rémi Wickuler
  * @author Julien Delane
- * @version 17.10.11
+ * @version 17.10.16
  * @since 17.10.11
  */
-public class shoot : MonoBehaviour {
-
+public class Shoot : MonoBehaviour
+{
     /**
      * Speed of bullets.
      *
+     * @unityParam
      * @since 17.10.11
      */
     public float speed = 100.0f;
@@ -22,18 +23,19 @@ public class shoot : MonoBehaviour {
     /**
      * Positions of the bullet.
      *
+     * @unityParam
      * @since 17.10.11
      */
-    public GameObject my_position;
+    public GameObject playerPosition;
 
     /**
      * Move the bullet.
      *
      * @since 17.10.11
      */
-	void Update ()
+	private void Update()
     {
-        my_position.transform.Translate(Vector2.left * (Time.deltaTime * speed));
+        playerPosition.transform.Translate(Vector2.left * (Time.deltaTime * speed));
         Destroy(this.gameObject, 3.0f);
     }
 }

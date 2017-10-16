@@ -7,27 +7,27 @@ using UnityEngine;
  *
  * @author Rémi Wickuler
  * @author Julien Delane
- * @version 17.10.11
+ * @version 17.10.16
  * @since 17.10.05
  */
-public class enableCollider : MonoBehaviour {
-
+public class EnableCollider : MonoBehaviour
+{
     /**
      * The collide area.
      *
      * @since 17.10.05
      */
-    private EdgeCollider2D colli;
+    private EdgeCollider2D edgeCollider;
 
     /**
      * Get the collide area.
      *
      * @since 17.10.05
      */
-    void Start()
+    private void Start()
     {
-         colli = GetComponentInParent<EdgeCollider2D>();
-         colli.enabled = false;
+         edgeCollider = GetComponentInParent<EdgeCollider2D>();
+         edgeCollider.enabled = false;
     }
 
     /**
@@ -36,11 +36,11 @@ public class enableCollider : MonoBehaviour {
      * @param collider area to check if rob get in
      * @since 17.10.05
      */
-	void OnTriggerEnter2D(Collider2D coll)
+	private void OnTriggerEnter2D(Collider2D collider)
     {
-       if (coll.tag == "Rob")
+       if (collider.tag == "Rob")
         {
-            colli.enabled = true;
+            edgeCollider.enabled = true;
         }
     }
 
@@ -50,11 +50,12 @@ public class enableCollider : MonoBehaviour {
      * @param collider area to check if rob get out
      * @since 17.10.05
      */
-    void OnTriggerExit2D(Collider2D coll)
+    private void OnTriggerExit2D(Collider2D collider)
     {
-        if (coll.tag == "Rob")
+        if (collider.tag == "Rob")
         {
-            colli.enabled = false;
+            edgeCollider.enabled = false;
         }
     }
+
 }

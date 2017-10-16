@@ -8,17 +8,17 @@ using UnityEngine.UI;
  *
  * @author Rémi Wickuler
  * @author Julien Delane
- * @version 17.10.11
+ * @version 17.10.15
  * @since 17.10.05
  */
-public class creationMenu : MonoBehaviour {
-
+public class CreationMenu : MonoBehaviour
+{
     /**
      * Menu canvas.
      *
      * @since 17.10.10
      */
-    private Canvas can;
+    private Canvas canvas;
 
     /**
      * GameObject selected.
@@ -45,7 +45,7 @@ public class creationMenu : MonoBehaviour {
     public int[] price;
 
     /**
-     * Index of the cursor.
+     * Index of the Cursor.
      *
      * @since 17.10.10
      */
@@ -59,7 +59,7 @@ public class creationMenu : MonoBehaviour {
     private Image[] images;
 
     /**
-     * Rob where he will be create.
+     * Rob where object will be created.
      *
      * @unityParam
      * @since 17.10.10
@@ -71,9 +71,9 @@ public class creationMenu : MonoBehaviour {
      * 
      * @since 17.10.05
      */
-	void Start () {
-        can = GetComponent<Canvas>();
-        can.enabled = false;
+	private void Start () {
+        canvas = GetComponent<Canvas>();
+        canvas.enabled = false;
         images = GetComponentsInChildren<Image>();
         images[1].sprite = create[0].GetComponentInChildren<SpriteRenderer>().sprite;
         images[2].sprite = create[1].GetComponentInChildren<SpriteRenderer>().sprite;
@@ -84,24 +84,24 @@ public class creationMenu : MonoBehaviour {
      *
      * @since 17.10.05
      */
-	void Update() { 
-         if (can.enabled == true)
+	private void Update() { 
+         if (canvas.enabled == true)
         {
-            playerController.stop = true;
+            PlayerController.stop = true;
         }
         else
         {
-            playerController.stop = false;
+            PlayerController.stop = false;
         }
-        if (cursor.current.name == "Rob.I" && Input.GetKeyDown("e") && can.enabled == false)
+        if (PlayerManager.current.name == "Rob.I" && Input.GetKeyDown("e") && canvas.enabled == false)
         {
-            can.enabled = true;
+            canvas.enabled = true;
         }
-        else if (cursor.current.name == "Rob.I" && Input.GetKeyDown("e") && can.enabled == true)
+        else if (PlayerManager.current.name == "Rob.I" && Input.GetKeyDown("e") && canvas.enabled == true)
         {
-            can.enabled = false;
+            canvas.enabled = false;
         }
-        if (can.enabled == true)
+        if (canvas.enabled == true)
         {
             if (Input.GetKeyDown("d") && index != create.Length - 1)
             {
@@ -113,13 +113,14 @@ public class creationMenu : MonoBehaviour {
                 select.GetComponent<Image>().transform.Translate(new Vector2(-600, 0));
                 index--;
             }
-            if (Input.GetKeyDown("f") && cursor.inventory[cursor.current.name] != null && cursor.inventory[cursor.current.name].Count >= price[index])
+            if (Input.GetKeyDown("f") && PlayerManager.inventory[PlayerManager.current.name] != null && PlayerManager.inventory[PlayerManager.current.name].Count >= price[index])
             {
                 Instantiate(create[index], spawnPoint.transform.position, spawnPoint.transform.rotation);
-                can.enabled = false;
-                cursor.inventory[cursor.current.name].RemoveRange(cursor.inventory[cursor.current.name].Count - price[index], price[index]);
+                canvas.enabled = false;
+                PlayerManager.inventory[PlayerManager.current.name].RemoveRange(PlayerManager.inventory[PlayerManager.current.name].Count - price[index], price[index]);
             }
         }
 	}
+
 }
 

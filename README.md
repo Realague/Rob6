@@ -3,18 +3,18 @@
 
 # Basic guide good practice
 
-##Code formatting
+## Code formatting
 
 ### Name formatting
 
 * The name of the variable and the method we are using the Camel case format which consist to begin every word with an uppercase except for the first word.
  Example: <code>variableAndMethodName</code>
 
-* The name of the files and folder are similar to the variable and method name but the first word will also begin with an uppercase.
-Example: <code>FileAndFolderName</code>
+* The name of the files are similar to the variable and method name but the first word will also begin with an uppercase.
+Example: <code>FileName</code>
 
-
-* The name of folder will be in camelcase and short but meaningful.
+* The name of folder will be in lower case and short but meaningful.
+Example: <code>foldername</code>
 
 * The constant variable will be written in uppercase and word will be separated by an underscore.
 Example: <code>CONSTANT_NAME</code>
@@ -72,7 +72,7 @@ Please provide any additional information below.
 Attach a screenshot if possible
 ```
 
- ##How to use Unity3D for Rob.6
+ ## How to use Unity3D for Rob.6
 
 - Basics :
 

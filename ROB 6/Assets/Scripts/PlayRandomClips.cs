@@ -6,17 +6,17 @@ using UnityEngine;
  * PlayRandomClips.
  *
  * @author Julien Delane
- * @version 17.10.10
+ * @version 17.10.16
  * @since 17.10.10
  */
-public class playRandomMusic : MonoBehaviour {
-
+public class playRandomClips : MonoBehaviour
+{
     /**
      * List of clips.
      *
      * @since 17.10.10
      */
-    private Object[] music;
+    private Object[] clipsList;
 
     /**
      * Directory where are soundtracks.
@@ -31,19 +31,19 @@ public class playRandomMusic : MonoBehaviour {
      *
      * @since 17.10.10
      */
-    void Awake()
+    private void Awake()
     {
         //load all the music in the folder specified in parameter\\
-        music = Resources.LoadAll(directory, typeof(AudioClip));
-        GetComponent<AudioSource>().clip = music[0] as AudioClip;
+        clipsList = Resources.LoadAll(directory, typeof(AudioClip));
+        GetComponent<AudioSource>().clip = clipsList[0] as AudioClip;
     }
 
     /**
-     * Play clips.
+     * Start to play clips.
      *
      * @since 17.10.10
      */
-    void Start ()
+    private void Start()
     {
         GetComponent<AudioSource>().Play();	
 	}
@@ -53,7 +53,7 @@ public class playRandomMusic : MonoBehaviour {
      *
      * @since 17.10.10
      */
-	void Update ()
+	private void Update()
     {
 		if (!GetComponent<AudioSource>().isPlaying)
         {
@@ -66,9 +66,9 @@ public class playRandomMusic : MonoBehaviour {
      *
      * @since 17.10.10
      */
-    void playRandomClip ()
+    private void playRandomClip()
     {
-        GetComponent<AudioSource>().clip = music[Random.Range(0, music.Length)] as AudioClip;
+        GetComponent<AudioSource>().clip = clipsList[Random.Range(0, clipsList.Length)] as AudioClip;
         GetComponent<AudioSource>().Play();
     }
 }

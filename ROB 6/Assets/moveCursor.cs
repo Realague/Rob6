@@ -8,11 +8,11 @@ using UnityEngine.SceneManagement;
  *
  * @author Rémi Wickuler
  * @author Julien Delane
- * @version 17.10.11
+ * @version 17.10.14
  * @since 17.10.11
  */
-public class moveCursor : MonoBehaviour {
-
+public class MoveCursor : MonoBehaviour
+{
     /**
      * Index in the menu.
      *
@@ -33,7 +33,8 @@ public class moveCursor : MonoBehaviour {
      *
      * @since 17.10.11
      */
-	void Start () {
+	private void Start()
+    {
         close = false;
 	}
 	
@@ -42,28 +43,39 @@ public class moveCursor : MonoBehaviour {
      *
      * @since 17.10.11
      */
-	void Update () {
+	private void Update()
+    {
         if (Input.GetKeyDown(KeyCode.Z))
+        {
             i--;
+        }
         else if (Input.GetKeyDown(KeyCode.S))
+        {
             i++;
+        }
         if (i > 1)
+        {
             i = 0;
+        }
         else if (i < 0)
+        {
             i = 1;
+        }
         switch (i)
         {
             case 0:
                 transform.position = new Vector2(transform.position.x, 750);
                 if (Input.GetKeyDown(KeyCode.Space))
+                {
                     close = true;
+                }
                 break;
             case 1:
                 transform.position = new Vector2(transform.position.x, 550);
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     Time.timeScale = 1;
-                    playerController.stop = false;
+                    PlayerController.stop = false;
                     SceneManager.LoadScene(0);
                 }
                 break;

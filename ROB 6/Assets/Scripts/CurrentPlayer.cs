@@ -8,11 +8,11 @@ using UnityEngine.UI;
  *
  * @author Rémi Wickuler
  * @author Julien Delane
- * @version 17.10.11
+ * @version 17.10.15
  * @since 17.10.05
  */
-public class curentPlayer : MonoBehaviour {
-
+public class CurrentPlayer : MonoBehaviour
+{
     /**
      * Current player.
      *
@@ -25,7 +25,8 @@ public class curentPlayer : MonoBehaviour {
      *
      * @since 17.10.05
      */
-	void Start () {
+	public void Start()
+    {
         current = GetComponent<Image>();
 	}
 
@@ -34,7 +35,8 @@ public class curentPlayer : MonoBehaviour {
      *
      * @since 17.10.05
      */
-    void Update() {
-        current.sprite = cursor.current.GetComponent<SpriteRenderer>().sprite;
+    public void Update()
+    {
+        current.sprite = PlayerManager.current.GetComponent<SpriteRenderer>().sprite;
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerShoot : MonoBehaviour {
+public class PlayerShoot : MonoBehaviour {
 
     private GameObject flip;
     private float cooldown = 0f;

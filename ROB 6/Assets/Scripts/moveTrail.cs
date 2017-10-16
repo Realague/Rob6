@@ -7,7 +7,7 @@ using UnityEngine;
  *
  * @author Rémi Wickuler
  * @author Julien Delane
- * @version 17.10.10
+ * @version 17.10.15
  * @since 17.10.10
  */
 public class moveTrail : MonoBehaviour {
@@ -33,7 +33,7 @@ public class moveTrail : MonoBehaviour {
      *
      * @since 17.10.10
      */
-    void Update()
+    private void Update()
     {
         transform.Translate(Vector3.forward * Time.deltaTime * Speed);
         Destroy(gameObject, 1);
@@ -44,13 +44,13 @@ public class moveTrail : MonoBehaviour {
      *
      * @since 17.10.10
      */
-    void OnTriggerEnter2D(Collider2D coll)
+    private void OnTriggerEnter2D(Collider2D coll)
     {
         if (coll.name != "turret")
         {
             if (coll.tag == "Rob" && coll.name != "Rob.B")
             {
-                playerController.death = true;
+                PlayerController.death = true;
             }
             Destroy(gameObject);
         }

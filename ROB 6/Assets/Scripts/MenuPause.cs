@@ -4,20 +4,20 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /**
- * PauseMenu.
+ * MenuPause.
  *
  * @author Julien Delane
- * @version 17.10.10
+ * @version 17.10.16
  * @since 17.10.10
  */
-public class pauseMenu : MonoBehaviour
+public class MenuPause : MonoBehaviour
 {
     /**
      * If pause menu is displayed.
      *
      * @since 17.10.10
      */
-    private bool show_pause_menu = false;
+    private bool showPauseMenu = false;
 
     /**
      * Time to wait before the menu open/close.
@@ -38,7 +38,7 @@ public class pauseMenu : MonoBehaviour
      *
      * @since 17.10.10
      */
-    private bool is_pressed = false;
+    private bool isPressed = false;
 
     /**
      * Menu to show.
@@ -61,7 +61,7 @@ public class pauseMenu : MonoBehaviour
      *
      * @since 17.10.10
      */
-    void Start ()
+    private void Start()
     {
         canvas.SetActive(false);
 	}
@@ -71,17 +71,16 @@ public class pauseMenu : MonoBehaviour
      *
      * @since 17.10.10
      */
-	void Update ()
+	private void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            show_pause_menu = !show_pause_menu;
+            showPauseMenu = !showPauseMenu;
             wait = -1f;
             pressed = true;
         }
 
-        if (show_pause_menu == true)
+        if (showPauseMenu == true)
         {
             //play the sound and wait the end\\
             //if (wait == 1.5f)
@@ -105,7 +104,8 @@ public class pauseMenu : MonoBehaviour
                 pressed = false;
             }
         }
-        if (is_pressed)
+
+        if (isPressed)
         {
             wait = wait - Time.deltaTime;
             //wait ther end of the sound played\\
@@ -134,7 +134,7 @@ public class pauseMenu : MonoBehaviour
      */
     public void unpaused()
     {
-        show_pause_menu = !show_pause_menu;
+        showPauseMenu = !showPauseMenu;
     }
 
     /**
@@ -142,10 +142,11 @@ public class pauseMenu : MonoBehaviour
      *
      * @since 17.10.10
      */
-    void Pressed()
+    private void Pressed()
     {
         AudioSource.PlayClipAtPoint(sound, transform.position);
-        is_pressed = true;
+        isPressed = true;
         wait = 1.5f;
     }
+
 }

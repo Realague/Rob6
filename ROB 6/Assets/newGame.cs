@@ -3,24 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class newGame : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+/**
+ * MoveCursor.
+ *
+ * @author Rémi Wickuler
+ * @author Julien Delane
+ * @version 17.10.14
+ * @since 17.10.14
+ */
+public class NewGame : MonoBehaviour
+{
+    /**
+     * Continue game.
+     *
+     * @since 17.10.14
+     */
+	public void Update()
+    {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            gameControl.level = 2;
-            gameControl.control.save();
+            GameControl.level = 2;
+            GameControl.control.save();
         }
         else if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene(0);
         }
-		
 	}
+
 }

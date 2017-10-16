@@ -8,11 +8,11 @@ using UnityEngine.UI;
  *
  * @author Rémi Wickuler
  * @author Julien Delane
- * @version 17.10.11
+ * @version 17.10.16
  * @since 17.10.11
  */
-public class write : MonoBehaviour {
-
+public class Write : MonoBehaviour
+{
     /**
      * The input field.
      *
@@ -24,13 +24,11 @@ public class write : MonoBehaviour {
     /**
      * Init the input field.
      *
-     * @unityParam
      * @since 17.10.11
      */
-	void Start () {
+	private void Start()
+    {
 		slc.ActivateInputField();
 	}
-	
-	void Update () {
-	}
+
 }
