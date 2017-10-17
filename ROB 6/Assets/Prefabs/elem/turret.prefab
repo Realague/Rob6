@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 82133992861097782}
   - component: {fileID: 82624598087519052}
   m_Layer: 2
-  m_Name: turret
+  m_Name: Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4017304742009652}
   m_Layer: 2
-  m_Name: firePoint
+  m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -329,7 +329,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  line_shot: {fileID: 1188022494594808, guid: 8b3cac8973077274b99fa05a13dfcc26, type: 2}
+  lineShot: {fileID: 0}
 --- !u!212 &212622060879308748
 SpriteRenderer:
   m_ObjectHideFlags: 1

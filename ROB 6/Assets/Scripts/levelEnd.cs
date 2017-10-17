@@ -8,25 +8,24 @@ using UnityEngine.SceneManagement;
  * Load the given scene id otherwise load the next scene id
  *
  * @author Julien Delane
- * @version 17.10.11
+ * @version 17.10.16
  * @since 17.10.10
  */
-public class levelEnd : MonoBehaviour
+public class LevelLoader : MonoBehaviour
 {
-
     /**
      * Var that is true when the player finish the level.
      *
      * @since 17.10.10
      */
-    private bool is_end = false;
+    private bool isEnd = false;
 
     /**
      * The time during the screen fade.
      *
      * @since 17.10.10
      */
-    private float fade_time;
+    private float fadeDuration;
 
     /**
      * Time until the scene change.
@@ -37,12 +36,12 @@ public class levelEnd : MonoBehaviour
     public float timer = 0.4f;
 
     /**
-     * Sound to play when the level change.
+     * clip to play when the level change.
      *
      * @unityParam
      * @since 17.10.10
      */
-    public AudioClip sound;
+    public AudioClip clip;
 
     /**
      * Id of the scene.
@@ -57,55 +56,63 @@ public class levelEnd : MonoBehaviour
      *
      * @since 17.10.10
      */
-    void Update()
+    private void Update()
     {
-        if (is_end)
+        if (isEnd)
         {
-            //wait until the end of the animation and the sound
+            //wait until the end of the animation and the clip
             timer = timer - Time.deltaTime;
-            //when the animation and the sound end, load the next level
+            //when the animation and the clip end, load the next level
             if (timer <= 0)
             {
                 if (scene == -1)
+                {
                     SceneManager.LoadScene(SceneManager.GetSceneAt(0).buildIndex + 1);
+                }
                 else
+                {
                     SceneManager.LoadScene(scene);
+                }
             }
         }
     }
 
     /**
-     * Launch the sound and the fade and the sound then load the level.
+     * Launch the clip and the fade and the clip then load the level.
      *
      * @return IEnumerator
      * @since 17.10.10
      */
      //TODO: change to make this method work so we don't call the update method anymore
-    IEnumerator change_level()
+    private IEnumerator changeLevel()
     {
-        fade_time = GameObject.Find("fade").GetComponent<fading>().begin_fade(1);
-        AudioSource.PlayClipAtPoint(sound, transform.position);
-        yield return new WaitForSeconds(fade_time);
+        fadeDuration = GameObject.Find("fade").GetComponent<Fading>().begin_fade(1);
+        AudioSource.PlayClipAtPoint(clip, transform.position);
+        yield return new WaitForSeconds(fadeDuration);
         if (scene == -1)
+        {
             SceneManager.LoadScene(SceneManager.GetSceneAt(0).buildIndex + 1);
+        }
         else
+        {
             SceneManager.LoadScene(scene);
+        }
     }
 
     /**
-     * Launch the fade and sound pass the boolean isEnd to true.
+     * Launch the fade and clip pass the boolean isEnd to true.
      *
      * @param collider the object the end game object collide with
      * @since 17.10.10
      */
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (other.tag == "Rob")
+        if (collider.tag == "Rob")
         {
-            fade_time = GameObject.Find("fade").GetComponent<fading>().begin_fade(1);
-            AudioSource.PlayClipAtPoint(sound, transform.position);
-            change_level();
-            is_end = true;
+            fadeDuration = GameObject.Find("fade").GetComponent<Fading>().begin_fade(1);
+            AudioSource.PlayClipAtPoint(clip, transform.position);
+            changeLevel();
+            isEnd = true;
         }
     }
 }

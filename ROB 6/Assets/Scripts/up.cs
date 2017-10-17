@@ -8,11 +8,11 @@ using UnityEngine;
  *
  * @author Rémi Wickuler
  * @author Julien Delane
- * @version 17.10.11
+ * @version 17.10.16
  * @since 17.10.11
  */
-public class up : MonoBehaviour {
-
+public class Up : MonoBehaviour
+{
     /**
      * Init animator.
      *
@@ -47,7 +47,8 @@ public class up : MonoBehaviour {
      *
      * @since 17.10.11
      */
-	void Start () {
+	private void Start()
+    {
         timer = Time.time + speed;
 	}
 	
@@ -56,9 +57,12 @@ public class up : MonoBehaviour {
      *
      * @since 17.10.11
      */
-	void Update () {
+	private void Update()
+    {
         if (auto == true)
+        {
             go = true;
+        }
        if (go == true && timer <= Time.time && (transform.position.y < 0f || auto == false))
         {
             transform.Translate(new Vector3(0, 0.1f));
@@ -72,7 +76,7 @@ public class up : MonoBehaviour {
      * @param collider area
      * @since 17.10.11
      */
-    void OnCollisionStay2D(Collision2D coll)
+    private void OnCollisionStay2D(Collision2D collider)
     {
         if (Input.GetKey("e"))
         {

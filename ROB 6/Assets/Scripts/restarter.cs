@@ -7,11 +7,11 @@ using UnityEngine.SceneManagement;
  * Restarter.
  *
  * @author Julien Delane
- * @version 17.10.11
+ * @version 17.10.17
  * @since 17.10.11
  */
-public class restarter : MonoBehaviour {
-
+public class Restarter : MonoBehaviour
+{
     /**
      * Time between the death and reload the level.
      *
@@ -32,15 +32,15 @@ public class restarter : MonoBehaviour {
      * @unityParam
      * @since 17.10.11
      */
-    Animator anim;
+    Animator animator;
 
     /**
-     * Death sound.
+     * Death clip.
      *
      * @unityParam
      * @since 17.10.11
      */
-    public AudioClip sound;
+    public AudioClip clip;
 
     /**
      * Init animator.
@@ -49,7 +49,7 @@ public class restarter : MonoBehaviour {
      */
     private void Start()
     {
-        //anim = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
     }
 
     /**
@@ -57,25 +57,25 @@ public class restarter : MonoBehaviour {
      *
      * @since 17.10.11
      */
-    void Update()
+    private void Update()
     {
         //catch the if player press r
-        if ((Input.GetKeyDown(KeyCode.R) || playerController.death == true) && !death)
+        if ((Input.GetKeyDown(KeyCode.R) || PlayerController.death == true) && !death)
         {
-            GameObject.Find("fade").GetComponent<fading>().begin_fade(1);
+            GameObject.Find("Fade").GetComponent<Fading>().begin_fade(1);
             death = true;
-            playerController.death = false;
-            AudioSource.PlayClipAtPoint(sound, transform.position);
+            PlayerController.death = false;
+            AudioSource.PlayClipAtPoint(clip, transform.position);
         }
-        //wait the end of the sound and animation to restart the lvl
+        //wait the end of the clip and animation to restart the lvl
         if (death)
         {
             timer = timer - Time.deltaTime;
             if (timer <= 0)
             {
-                playerController.facingRight = true;
+                PlayerController.facingRight = true;
                 SceneManager.LoadScene(SceneManager.GetSceneAt(0).name);
-                //anim.SetBool("death", false);
+                //animator.SetBool("death", false);
             }
         }
     }
@@ -85,7 +85,7 @@ public class restarter : MonoBehaviour {
         Debug.Log("ps");
         float fade_time = 7;
         //fade_time = GameObject.Find("fade").GetComponent<fading>().begin_fade(1);
-        AudioSource.PlayClipAtPoint(sound, transform.position);
+        AudioSource.PlayClipAtPoint(clip, transform.position);
         SceneManager.LoadScene(SceneManager.GetSceneAt(0).name);
         yield return new WaitForSeconds(fade_time);
     }*/
@@ -96,16 +96,17 @@ public class restarter : MonoBehaviour {
      * @param collider object the player hit
      * @since 17.10.11
      */
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        //play the sound and the animation of death
-        if (other.tag == "Death" && !death)
+        //play the clip and the animation of death
+        if (collider.tag == "Death" && !death)
         {
-            GameObject.Find("fade").GetComponent<fading>().begin_fade(1);
-            AudioSource.PlayClipAtPoint(sound, transform.position);
+            GameObject.Find("Fade").GetComponent<Fading>().begin_fade(1);
+            AudioSource.PlayClipAtPoint(clip, transform.position);
             //dead();
-            //anim.SetBool("death", true);
+            //animator.SetBool("death", true);
             death = true;
         }
     }
+
 }

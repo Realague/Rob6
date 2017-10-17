@@ -5,9 +5,9 @@ using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
-public class gameControl : MonoBehaviour {
+public class GameControl : MonoBehaviour {
 
-    public static gameControl control;
+    public static GameControl control;
     public static int level = 2;
 
 	// Use this for initialization

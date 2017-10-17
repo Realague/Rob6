@@ -9,7 +9,7 @@ using UnityEngine;
  * @version 17.10.11
  * @since 17.10.09
  */
-public class fading : MonoBehaviour
+public class Fading : MonoBehaviour
 {
 
     /**

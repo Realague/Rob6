@@ -8,17 +8,17 @@ using UnityEngine;
  *
  * @author Rémi Wickuler
  * @author Julien Delane
- * @version 17.10.11
+ * @version 17.10.17
  * @since 17.10.11
  */
-public class zone : MonoBehaviour {
-
+public class Zone : MonoBehaviour
+{
     /**
      * Where ray will pawn.
      *
      * @since 17.10.11
      */
-    private Transform fire_point;
+    private Transform firePoint;
 
     /**
      * Cooldown of the turret.
@@ -48,7 +48,7 @@ public class zone : MonoBehaviour {
      * @unityParam
      * @since 17.10.11
      */
-    public GameObject line_shot;
+    public GameObject lineShot;
 
     /**
      * Distance with the shortest rob.
@@ -77,10 +77,10 @@ public class zone : MonoBehaviour {
      *
      * @since 17.10.11
      */
-    void Awake()
+    private void Awake()
     {
         lol = GetComponents<AudioSource>();
-        fire_point = transform.Find("firePoint");
+        firePoint = transform.Find("FirePoint");
     }
 
     /**
@@ -88,7 +88,7 @@ public class zone : MonoBehaviour {
      *
      * @since 17.10.11
      */
-	void Update ()
+	private void Update()
     {
         cooldown -= Time.deltaTime;
     }
@@ -96,27 +96,29 @@ public class zone : MonoBehaviour {
     /**
      * Manage who enter in the area, shoot in his direction and work if there are several player in the area.
      *
-     * @param collider game object hit
+     * @param collider target
      * @since 17.10.11
      */
-    void OnTriggerStay2D(Collider2D Target)
+    private void OnTriggerStay2D(Collider2D collider)
     {
-        if (Target.tag == "Rob")
+        if (collider.tag == "Rob")
         {
             shortest = Vector2.Distance(this.transform.position, dist[0].transform.position);
             foreach (GameObject rob in dist)
             {
                 tmp = Vector2.Distance(this.transform.position, rob.transform.position);
                 if (tmp < shortest)
+                {
                     shortest = tmp;
+                }
             }
-            if (shortest == Vector2.Distance(this.transform.position, Target.transform.position))
+            if (shortest == Vector2.Distance(this.transform.position, collider.transform.position))
             {
-                Quaternion rotation = Quaternion.LookRotation(Target.transform.position - transform.position, transform.TransformDirection(Vector3.up));
+                Quaternion rotation = Quaternion.LookRotation(collider.transform.position - transform.position, transform.TransformDirection(Vector3.up));
                 transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
                 if (cooldown <= 0)
                 {
-                    shoot(Target);
+                    shoot();
                     cooldown = 0.1f;
                 }
             }
@@ -126,15 +128,16 @@ public class zone : MonoBehaviour {
     /**
      * Play a sound and create a ray cast.
      *
-     * @param target of the ray
      * @since 17.10.11
      */
-    void shoot (Collider2D Target)
+    private void shoot()
     {
         if (!lol[0].isPlaying)
+        {
             lol[0].Play();
-        hit = Physics2D.Raycast(fire_point.position, fire_point.forward);
-        effect();
+        }
+        hit = Physics2D.Raycast(firePoint.position, firePoint.forward);
+        createShot();
     }
 
     /**
@@ -143,9 +146,9 @@ public class zone : MonoBehaviour {
      * @param collider the game object hit
      * @since 17.10.11
      */
-    void OnTriggerExit2D(Collider2D Target)
+    private void OnTriggerExit2D(Collider2D collider)
     {
-        if (Target.tag == "Rob")
+        if (collider.tag == "Rob")
         {
             lol[0].Stop();
             lol[1].Play();
@@ -158,9 +161,9 @@ public class zone : MonoBehaviour {
      * @param collider the game object hit
      * @since 17.10.11
      */
-    void OnTriggerEnter2D(Collider2D Target)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (Target.tag == "Rob")
+        if (collider.tag == "Rob")
         {
             lol[0].Play();
         }
@@ -171,8 +174,9 @@ public class zone : MonoBehaviour {
      *
      * @since 17.10.11
      */
-    void effect()
+    private void createShot()
     {
-        Instantiate(line_shot, fire_point.position, fire_point.rotation);
+        Instantiate(lineShot, firePoint.position, firePoint.rotation);
     }
+    
 }
