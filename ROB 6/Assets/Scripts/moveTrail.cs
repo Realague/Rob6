@@ -7,11 +7,11 @@ using UnityEngine;
  *
  * @author Rémi Wickuler
  * @author Julien Delane
- * @version 17.10.15
+ * @version 17.10.17
  * @since 17.10.10
  */
-public class moveTrail : MonoBehaviour {
-
+public class MoveTrail : MonoBehaviour
+{
     /**
      * Speed of the trail.
      *
@@ -42,13 +42,14 @@ public class moveTrail : MonoBehaviour {
     /**
      * Kill the player if he got hit by the trail.
      *
+     * @param collider the object
      * @since 17.10.10
      */
-    private void OnTriggerEnter2D(Collider2D coll)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (coll.name != "turret")
+        if (collider.name != "turret")
         {
-            if (coll.tag == "Rob" && coll.name != "Rob.B")
+            if (collider.tag == "Rob" && collider.name != "Rob.B")
             {
                 PlayerController.death = true;
             }

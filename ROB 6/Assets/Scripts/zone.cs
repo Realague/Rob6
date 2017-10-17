@@ -80,7 +80,7 @@ public class Zone : MonoBehaviour
     private void Awake()
     {
         lol = GetComponents<AudioSource>();
-        firePoint = transform.Find("firePoint");
+        firePoint = transform.Find("FirePoint");
     }
 
     /**
