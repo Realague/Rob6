@@ -8,7 +8,7 @@ using UnityEngine;
  *
  * @author Rémi Wickuler
  * @author Julien Delane
- * @version 17.10.16
+ * @version 17.10.17
  * @since 17.10.11
  */
 public class Zone : MonoBehaviour
@@ -108,7 +108,9 @@ public class Zone : MonoBehaviour
             {
                 tmp = Vector2.Distance(this.transform.position, rob.transform.position);
                 if (tmp < shortest)
+                {
                     shortest = tmp;
+                }
             }
             if (shortest == Vector2.Distance(this.transform.position, collider.transform.position))
             {

@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
  * Restarter.
  *
  * @author Julien Delane
- * @version 17.10.16
+ * @version 17.10.17
  * @since 17.10.11
  */
 public class Restarter : MonoBehaviour
@@ -62,7 +62,7 @@ public class Restarter : MonoBehaviour
         //catch the if player press r
         if ((Input.GetKeyDown(KeyCode.R) || PlayerController.death == true) && !death)
         {
-            GameObject.Find("fade").GetComponent<Fading>().begin_fade(1);
+            GameObject.Find("Fade").GetComponent<Fading>().begin_fade(1);
             death = true;
             PlayerController.death = false;
             AudioSource.PlayClipAtPoint(clip, transform.position);
@@ -101,7 +101,7 @@ public class Restarter : MonoBehaviour
         //play the clip and the animation of death
         if (collider.tag == "Death" && !death)
         {
-            GameObject.Find("fade").GetComponent<Fading>().begin_fade(1);
+            GameObject.Find("Fade").GetComponent<Fading>().begin_fade(1);
             AudioSource.PlayClipAtPoint(clip, transform.position);
             //dead();
             //animator.SetBool("death", true);

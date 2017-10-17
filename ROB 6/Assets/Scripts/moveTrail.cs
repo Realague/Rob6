@@ -47,7 +47,7 @@ public class MoveTrail : MonoBehaviour
      */
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.name != "turret")
+        if (collider.name != "Turret")
         {
             if (collider.tag == "Rob" && collider.name != "Rob.B")
             {
