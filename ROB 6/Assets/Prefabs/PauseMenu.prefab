@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 222658699230306898}
   - component: {fileID: 114302846703757468}
   m_Layer: 5
-  m_Name: play
+  m_Name: Play
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,7 +55,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224609747892757980}
   m_Layer: 5
-  m_Name: pauseMenu
+  m_Name: PauseMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 114143745150069904}
   - component: {fileID: 114299443989270796}
   m_Layer: 5
-  m_Name: pause_menu
+  m_Name: PauseMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 222173991524012184}
   - component: {fileID: 114829143659952234}
   m_Layer: 5
-  m_Name: quit
+  m_Name: Quit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

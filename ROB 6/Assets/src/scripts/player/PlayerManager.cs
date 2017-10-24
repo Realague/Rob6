@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
  *
  * @author Rémi Wickuler
  * @author Julien Delane
- * @version 17.10.15
+ * @version 17.10.23
  * @since 17.10.05
  */
  //TODO: rework the player manager inventory in this script??
@@ -101,11 +101,6 @@ public class PlayerManager : MonoBehaviour
      */
     private void Start()
     {
-        if (SceneManager.GetActiveScene().buildIndex >= GameControl.level)
-        {
-            GameControl.level = SceneManager.GetActiveScene().buildIndex;
-            GameControl.control.save();
-        }
         playersList = players;
         inventory = new Dictionary<string, List<GameObject>>();
         Cursor.visible = false;

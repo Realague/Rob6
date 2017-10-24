@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class mainMenuButtons : MonoBehaviour
+public class MainMenuButtons : MonoBehaviour
 {
     public AudioClip button_sound;
 

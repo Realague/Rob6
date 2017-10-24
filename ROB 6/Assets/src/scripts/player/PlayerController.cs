@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
  *
  * @author Rémi Wickuler
  * @author Julien Delane
- * @version 17.10.10
+ * @version 17.10.21
  * @since 17.10.10
  */
 public class PlayerController : MonoBehaviour
@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
      *
      * @since 17.10.10
      */
-    private Rigidbody2D rb;
+    private Rigidbody2D rigidBody;
 
     /**
      * Right foot.
@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
      * @unityParam
      * @since 17.10.10
      */
-    public float jumpspeed = 1.0F;
+    public float jumpSpeed = 1.0F;
 
     /**
      * Number of jump the player can performed without hit the ground.
@@ -147,7 +147,7 @@ public class PlayerController : MonoBehaviour
 
     private int nb = 0;
     public static GameObject fly;
-    public GameObject[] rob_H;
+    public GameObject[] robH;
 
     /**
      * Define if the player can run.
@@ -168,9 +168,9 @@ public class PlayerController : MonoBehaviour
         jumpCount = 0;
         jump = false;
         facingRight = true;
-        groundCheckRight = transform.Find("GroundCheck");
-        groundCheckLeft = transform.Find("GroundCheck2");
-        rb = GetComponent<Rigidbody2D>();
+        groundCheckRight = transform.Find("GroundCheckLeft");
+        groundCheckLeft = transform.Find("GroundCheckRight");
+        rigidBody = GetComponent<Rigidbody2D>();
     }
 
     /**
@@ -214,9 +214,9 @@ public class PlayerController : MonoBehaviour
             else
                 jump = false;
             if (facingRight == true && transform.localScale.x < 0)
-                Flip();
+                flip();
             if (facingRight == false && transform.localScale.x > 0)
-                Flip();
+                flip();
             if (jump == true)
                 transform.rotation = new Quaternion(0, 0, 0, 0);
             if (transform.name == "Rob.L")
@@ -236,7 +236,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F))
         {
-            foreach (GameObject rob in rob_H)
+            foreach (GameObject rob in robH)
             {
                 if (Vector2.Distance(transform.position, rob.transform.position) < closer)
                 {
@@ -257,7 +257,7 @@ public class PlayerController : MonoBehaviour
      *
      * @since 17.10.10
      */
-    private void Flip()
+    private void flip()
     {
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
@@ -294,7 +294,7 @@ public class PlayerController : MonoBehaviour
             //if spacebar is pressed and the player can jump do a jump\\
             if (jump == true && jumpCount < maxJump)
             {
-                rb.AddForce(new Vector2(0, 100 * jumpForce));
+                rigidBody.AddForce(new Vector2(0, 100 * jumpForce));
                 jumpCount++;
             }
 
@@ -370,7 +370,6 @@ public class PlayerController : MonoBehaviour
             }
             else if (collision.gameObject.tag == "door")
             {
-                
                 transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, (collision.transform.rotation.z + 0.4f) * -1, transform.rotation.w);
             }
         }
