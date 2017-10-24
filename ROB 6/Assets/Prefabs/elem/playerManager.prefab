@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4537429939493566}
   - component: {fileID: 114962247831344972}
   m_Layer: 0
-  m_Name: playerManager
+  m_Name: PlayerManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,7 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e16fa445f2c37224db27b35a545c8dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
   spawn: {fileID: 0}
   players:
   - {fileID: 0}

@@ -7,10 +7,10 @@ using UnityEngine;
  *
  * @author Rémi Wickuler
  * @author Julien Delane
- * @version 17.10.15
+ * @version 17.10.23
  * @since 17.10.10
  */
-public class launcher : MonoBehaviour
+public class Launcher : MonoBehaviour
 {
     /**
      * The spawn point.

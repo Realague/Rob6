@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4009657715648728}
   m_Layer: 0
-  m_Name: platSpawn
+  m_Name: PlatSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 61976899652567542}
   - component: {fileID: 114115541962917866}
   m_Layer: 9
-  m_Name: plat
+  m_Name: Plat
   m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

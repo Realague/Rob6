@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 61211204748994436}
   - component: {fileID: 114935213590908146}
   m_Layer: 0
-  m_Name: stairs
+  m_Name: Stairs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4229807576709780}
   m_Layer: 0
-  m_Name: spawnStairs
+  m_Name: SpawnStairs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

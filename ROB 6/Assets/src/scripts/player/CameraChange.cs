@@ -78,9 +78,9 @@ public class CameraChange : MonoBehaviour
      */
     private void Update()
     {
+        zoom();
         if (PlayerController.stop == false && Input.anyKeyDown)
         {
-            zoom();
             if (Input.GetKey(KeyCode.LeftControl))
             {
                 moveCamera();

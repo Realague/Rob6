@@ -86,7 +86,7 @@ public class LevelLoader : MonoBehaviour
      //TODO: change to make this method work so we don't call the update method anymore
     private IEnumerator changeLevel()
     {
-        fadeDuration = GameObject.Find("fade").GetComponent<Fading>().begin_fade(1);
+        fadeDuration = GameObject.Find("Fade").GetComponent<Fading>().begin_fade(1);
         AudioSource.PlayClipAtPoint(clip, transform.position);
         yield return new WaitForSeconds(fadeDuration);
         if (scene == -1)
@@ -109,7 +109,7 @@ public class LevelLoader : MonoBehaviour
     {
         if (collider.tag == "Rob")
         {
-            fadeDuration = GameObject.Find("fade").GetComponent<Fading>().begin_fade(1);
+            fadeDuration = GameObject.Find("Fade").GetComponent<Fading>().begin_fade(1);
             AudioSource.PlayClipAtPoint(clip, transform.position);
             changeLevel();
             isEnd = true;

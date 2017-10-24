@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 222887031930089360}
   - component: {fileID: 114851625475571042}
   m_Layer: 5
-  m_Name: spriteScrap
+  m_Name: SpriteScrap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 222568338470547030}
   - component: {fileID: 114157621966822304}
   m_Layer: 5
-  m_Name: nbScrap
+  m_Name: NbScrap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 222544664929336992}
   - component: {fileID: 114055149502811496}
   m_Layer: 5
-  m_Name: protected
+  m_Name: Protected
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 114269423847370066}
   - component: {fileID: 114947834571576666}
   m_Layer: 5
-  m_Name: currentPlayer
+  m_Name: CurrentPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
