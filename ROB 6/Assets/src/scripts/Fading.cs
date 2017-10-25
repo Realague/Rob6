@@ -6,7 +6,7 @@ using UnityEngine;
  * Fading.
  *
  * @author Julien Delane
- * @version 17.10.23
+ * @version 17.10.25
  * @since 17.10.09
  */
 public class Fading : MonoBehaviour
@@ -26,31 +26,31 @@ public class Fading : MonoBehaviour
      * @unityParam
      * @since 17.10.09
      */
-    public float fadeSpeed = 1.0f;
+    public static float fadeSpeed = 1.0f;
 
     /**
      * If equals -1 fade in and if equals 1 fade out.
      *
      * @since 17.10.09
      */
-    private int fadeDir = -1;
+    private static int fadeDir = -1;
 
     /**
      * Fade depth.
      *
      * @since 17.10.09
      */
-    private int drawDepth = -1000;
+    private static int drawDepth = -1000;
 
     /**
      * Alpha of the fade.
      *
      * @since 17.10.09
      */
-    private float alpha = 1.0f;
+    private static float alpha = 1.0f;
 
     /**
-     * Launch a fade animation.
+     * Do a fade animation.
      *
      * @since 17.10.09
      */
@@ -65,15 +65,15 @@ public class Fading : MonoBehaviour
         GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), fadeOutTexture);
     }
 
-
-    public float begin_fade (int direction)
+    /**
+     * Launch a fade animation.
+     *
+     * @since 17.10.09
+     */
+    public static float beginFade(int direction)
     {
         fadeDir = direction;
         return (fadeSpeed);
     }
-
-    public void on_level_was_loaded()
-    {
-        begin_fade(-1);
-    }
+    
 }

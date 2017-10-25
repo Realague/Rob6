@@ -22,8 +22,8 @@ public class NewGame : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameControl.level = 2;
-            GameControl.control.save();
+            //GameControl.level = 2;
+            //GameControl.control.save();
         }
         else if (Input.GetKeyDown(KeyCode.Escape))
         {

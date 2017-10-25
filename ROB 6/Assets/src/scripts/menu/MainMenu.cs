@@ -80,8 +80,8 @@ public class MainMenu : MonoBehaviour
             switch (i)
             {
                 case 0:
-                    GameControl.control.load();
-                    SceneManager.LoadScene(GameControl.level);
+                    //GameControl.control.load();
+                    //SceneManager.LoadScene(GameControl.level);
                     break;
                 case 1:
                     SceneManager.LoadScene(1);

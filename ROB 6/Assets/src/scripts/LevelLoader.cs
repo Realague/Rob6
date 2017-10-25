@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
  * Load the given scene id otherwise load the next scene id
  *
  * @author Julien Delane
- * @version 17.10.16
+ * @version 17.10.25
  * @since 17.10.10
  */
 public class LevelLoader : MonoBehaviour
@@ -86,7 +86,7 @@ public class LevelLoader : MonoBehaviour
      //TODO: change to make this method work so we don't call the update method anymore
     private IEnumerator changeLevel()
     {
-        fadeDuration = GameObject.Find("Fade").GetComponent<Fading>().begin_fade(1);
+        fadeDuration = Fading.beginFade(1);
         AudioSource.PlayClipAtPoint(clip, transform.position);
         yield return new WaitForSeconds(fadeDuration);
         if (scene == -1)
@@ -109,7 +109,7 @@ public class LevelLoader : MonoBehaviour
     {
         if (collider.tag == "Rob")
         {
-            fadeDuration = GameObject.Find("Fade").GetComponent<Fading>().begin_fade(1);
+            fadeDuration = Fading.beginFade(1);
             AudioSource.PlayClipAtPoint(clip, transform.position);
             changeLevel();
             isEnd = true;

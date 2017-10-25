@@ -6,35 +6,35 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/NewMenu.unity
+    path: Assets/scenes/NewMenu.unity
     guid: 06722437707659b478d6c4694b7a16c0
   - enabled: 1
-    path: Assets/Scenes/OptionMenu.unity
+    path: Assets/scenes/OptionMenu.unity
     guid: 61847514d75d2af4297448faac784415
   - enabled: 1
-    path: Assets/Scenes/Labo.unity
+    path: Assets/scenes/Labo.unity
     guid: ad70249900e67f247a95700ca5d74738
   - enabled: 1
-    path: Assets/Scenes/Try.unity
+    path: Assets/scenes/Try.unity
     guid: e4eb31d13de5fc148919d89f6e55fc9d
   - enabled: 1
-    path: Assets/Scenes/Try2.unity
+    path: Assets/scenes/Try2.unity
     guid: 03c665201fe0d3440bb0683cc52f28dc
   - enabled: 0
-    path: Assets/Scenes/Menu.unity
+    path: Assets/scenes/Menu.unity
     guid: 6fec17dffe553a840937a433bb028161
   - enabled: 0
-    path: Assets/Scenes/Control.unity
+    path: Assets/scenes/Control.unity
     guid: 395abdde28414214288fb2c74568055a
   - enabled: 0
-    path: Assets/Scenes/Game.unity
+    path: 
     guid: a5c801d378c770443a1c5a0f98b4ab62
   - enabled: 0
     path: Assets/_Scenes/rob.6.unity
     guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/Localization.unity
+    path: Assets/scenes/Localization.unity
     guid: d3d67d149b9a768428c0bb2eb0b820de
   - enabled: 1
-    path: Assets/Scenes/TestMenuLocalization.unity
+    path: Assets/scenes/TestMenuLocalization.unity
     guid: 1040e4fdbbe0c3a40992c9cc3414bc78
