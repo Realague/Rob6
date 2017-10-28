@@ -63,7 +63,7 @@ public class Up : MonoBehaviour
         {
             go = true;
         }
-       if (go == true && timer <= Time.time && (transform.position.y < 0f || auto == false))
+        if (go == true && timer <= Time.time && (transform.position.y < 0f || auto == false))
         {
             transform.Translate(new Vector3(0, 0.1f));
             timer = Time.time + speed;

@@ -13,7 +13,7 @@ using UnityEngine.SceneManagement;
 public class StartupManager : MonoBehaviour
 {
     /**
-     * Key value to get.
+     * Wait for the ressource to be loaded to return to the menu.
      *
      * @since 17.10.14
      */

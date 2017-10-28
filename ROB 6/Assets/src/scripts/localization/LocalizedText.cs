@@ -26,7 +26,7 @@ public class LocalizedText : MonoBehaviour
      * @unityParam
      * @since 17.10.14
      */
-    public void Start()
+    private void Start()
     {
         Text text = GetComponent<Text>();
         text.text = LocalizationManager.instance.GetLocalizedValue(key);

@@ -13,18 +13,11 @@ using UnityEngine.SceneManagement;
 public class Restarter : MonoBehaviour
 {
     /**
-     * Time between the death and reload the level.
-     *
-     * @since 17.10.11
-     */
-    private float timer = 0.5f;
-
-    /**
      * Define if the scene must restart.
      *
      * @since 17.10.11
      */
-    private bool death = false;
+    public static bool isDead = false;
 
     /**
      * Death animation.
@@ -59,36 +52,31 @@ public class Restarter : MonoBehaviour
      */
     private void Update()
     {
-        //catch the if player press r
-        if ((Input.GetKeyDown(KeyCode.R) || PlayerController.death == true) && !death)
+        if (Input.GetKeyDown(KeyCode.R) || isDead)
         {
-            Fading.beginFade(1);
-            death = true;
-            PlayerController.death = false;
-            AudioSource.PlayClipAtPoint(clip, transform.position);
-        }
-        //wait the end of the clip and animation to restart the lvl
-        if (death)
-        {
-            timer = timer - Time.deltaTime;
-            if (timer <= 0)
-            {
-                PlayerController.facingRight = true;
-                SceneManager.LoadScene(SceneManager.GetSceneAt(0).name);
-                //animator.SetBool("death", false);
-            }
+            StartCoroutine(death(isDead));
+            isDead = false;
         }
     }
 
-    /*IEnumerator dead()
+    /**
+     * When the level need to be reload launch the fade animation and clip and then wait the fade animation end to reload the level.
+     *
+     * @param isDead definbe is the player isDead.
+     * @since 17.10.05
+     */
+    private IEnumerator death(bool isDead)
     {
-        Debug.Log("ps");
-        float fade_time = 7;
-        //fade_time = GameObject.Find("fade").GetComponent<fading>().begin_fade(1);
+        float fadeDuration = Fading.beginFade(1);
+        if (isDead)
+        {
+    //        animator.SetBool("death", true);
+        }
         AudioSource.PlayClipAtPoint(clip, transform.position);
+        yield return new WaitForSecondsRealtime(fadeDuration);
+        PlayerController.facingRight = true;
         SceneManager.LoadScene(SceneManager.GetSceneAt(0).name);
-        yield return new WaitForSeconds(fade_time);
-    }*/
+    }
 
     /**
      * Check if the player hit an object that kill him and set the player to death.
@@ -98,14 +86,9 @@ public class Restarter : MonoBehaviour
      */
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        //play the clip and the animation of death
-        if (collider.tag == "Death" && !death)
+        if (collider.tag.CompareTo("Death") == 0 && !isDead)
         {
-            Fading.beginFade(-1);
-            AudioSource.PlayClipAtPoint(clip, transform.position);
-            //dead();
-            //animator.SetBool("death", true);
-            death = true;
+            isDead = true;
         }
     }
 

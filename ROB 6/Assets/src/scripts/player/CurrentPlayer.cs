@@ -25,7 +25,7 @@ public class CurrentPlayer : MonoBehaviour
      *
      * @since 17.10.05
      */
-	public void Start()
+	private void Start()
     {
         current = GetComponent<Image>();
 	}
@@ -35,7 +35,7 @@ public class CurrentPlayer : MonoBehaviour
      *
      * @since 17.10.05
      */
-    public void Update()
+    private void Update()
     {
         current.sprite = PlayerManager.current.GetComponent<SpriteRenderer>().sprite;
     }

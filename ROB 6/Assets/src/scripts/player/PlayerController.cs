@@ -205,22 +205,34 @@ public class PlayerController : MonoBehaviour
                 x = 0;
                 run = false;
             }
-            if (transform.name == "Rob.I" || transform.name == "Rob.B")
+            if (transform.name.CompareTo("Rob.I") == 0 || transform.name.CompareTo("Rob.B") == 0)
             {
                 anim.SetBool("run", run);
             }
             if (Input.GetKeyDown(KeyCode.Space) && jumpCount < 2)
+            {
                 jump = true;
+            }
             else
+            {
                 jump = false;
+            }
             if (facingRight == true && transform.localScale.x < 0)
+            {
                 flip();
+            }
             if (facingRight == false && transform.localScale.x > 0)
+            {
                 flip();
+            }
             if (jump == true)
+            {
                 transform.rotation = new Quaternion(0, 0, 0, 0);
-            if (transform.name == "Rob.L")
+            }
+            if (transform.name.CompareTo("Rob.L") == 0)
+            {
                 takeRobH();
+            }
         }
     }
 
@@ -311,7 +323,7 @@ public class PlayerController : MonoBehaviour
      */
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "ground")
+        if (collision.gameObject.tag.CompareTo("ground") == 0)
         {
             transform.rotation = new Quaternion(collision.transform.rotation.x, collision.transform.rotation.y, collision.transform.rotation.z, collision.transform.rotation.w);
         }
@@ -325,7 +337,7 @@ public class PlayerController : MonoBehaviour
      */
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.tag == "scrap")
+        if (collider.gameObject.tag.CompareTo("scrap") == 0)
         {
              Physics2D.IgnoreCollision(this.gameObject.GetComponent<BoxCollider2D>(), collider.GetComponent<PolygonCollider2D>(), true);
         }
@@ -341,7 +353,7 @@ public class PlayerController : MonoBehaviour
     {
         if (PlayerManager.current == this.gameObject)
         {
-            if (collider.gameObject.tag == "scrap" && Input.GetKeyDown(KeyCode.F))
+            if (collider.gameObject.tag.CompareTo("scrap") == 0 && Input.GetKeyDown(KeyCode.F))
             {
                 Physics2D.IgnoreCollision(this.gameObject.GetComponent<BoxCollider2D>(), collider.GetComponent<PolygonCollider2D>(), true);
                 if (PlayerManager.inventory[transform.name] == null)
@@ -364,11 +376,11 @@ public class PlayerController : MonoBehaviour
     {
         if (PlayerManager.current == this.gameObject)
         {
-            if (collision.gameObject.tag == "ground")
+            if (collision.gameObject.tag.CompareTo("ground") == 0)
             {
                 transform.rotation = new Quaternion(collision.transform.rotation.x, collision.transform.rotation.y, collision.transform.rotation.z, collision.transform.rotation.w);
             }
-            else if (collision.gameObject.tag == "door")
+            else if (collision.gameObject.tag.CompareTo("door") == 0)
             {
                 transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, (collision.transform.rotation.z + 0.4f) * -1, transform.rotation.w);
             }

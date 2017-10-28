@@ -23,10 +23,9 @@ public class Fading : MonoBehaviour
     /**
      * Fading speed.
      *
-     * @unityParam
      * @since 17.10.09
      */
-    public static float fadeSpeed = 1.0f;
+    private static float fadeSpeed = 1.0f;
 
     /**
      * If equals -1 fade in and if equals 1 fade out.

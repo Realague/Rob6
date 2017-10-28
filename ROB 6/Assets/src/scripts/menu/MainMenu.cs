@@ -8,11 +8,25 @@ using UnityEngine.SceneManagement;
  *
  * @author Rémi Wickuler
  * @author Julien Delane
- * @version 17.10.14
+ * @version 17.10.28
  * @since 17.10.10
  */
 public class MainMenu : MonoBehaviour
 {
+    /**
+     * The button clip.
+     *
+     * @since 17.10.28
+     */
+    public AudioClip buttonClip;
+
+    /**
+     * The switch clip.
+     *
+     * @since 17.10.28
+     */
+    public AudioClip switchClip;
+
     /**
      * The position of the cursor.
      *
@@ -25,68 +39,62 @@ public class MainMenu : MonoBehaviour
      *
      * @since 17.10.10
      */
-	public void Update()
+	private void Update()
     {
-        if (Input.GetKeyDown("s"))
+        if (Input.GetKeyDown("z"))
         {
-            i++;
+            AudioSource.PlayClipAtPoint(switchClip, transform.position);
+            if (i == 0)
+            {
+                i = 2;
+            }
+            else
+            {
+                i--;
+            }
+            transform.position = new Vector2(transform.position.x, i * -1.75f);
         }
-        else if (Input.GetKeyDown("z"))
+        else if (Input.GetKeyDown("s"))
         {
-            i--;
+            AudioSource.PlayClipAtPoint(switchClip, transform.position);
+            if (i == 2)
+            {
+                i = 0;
+            }
+            else
+            {
+                ++i;
+            }
+            transform.position = new Vector2(transform.position.x, i * -1.75f);
         }
-        if (i < 0)
-        {
-            i = 2;
-        }
-        else if (i > 2)
-        {
-            i = 0;
-        }
-        cursorPosition();
-        select();
+        StartCoroutine(select());
     }
 
     /**
-     * Move the cursor.
+     * Check if the player select an option and launch it.
      *
-     * @since 17.10.10
+     * @since 17.10.28
      */
-    private void cursorPosition()
-    {
-        switch (i)
-        {
-            case 0:
-                transform.position = new Vector2(4, 0);
-                break;
-            case 1:
-                 transform.position = new Vector2(4, -1.75f);
-                break;
-            case 2:
-                transform.position = new Vector2(4, -3.5f);
-                break;
-        }
-    }
-
-    /**
-     * Check if the player select an option and launchh it.
-     *
-     * @since 17.10.10
-     */
-    private void select()
+    private IEnumerator select()
     {
         if (Input.GetKeyDown("space"))
         {
             switch (i)
             {
                 case 0:
+                    AudioSource.PlayClipAtPoint(buttonClip, transform.position);
+                    yield return new WaitForSecondsRealtime(buttonClip.length);
                     //GameControl.control.load();
                     //SceneManager.LoadScene(GameControl.level);
                     break;
                 case 1:
+                    AudioSource.PlayClipAtPoint(buttonClip, transform.position);
+                    yield return new WaitForSecondsRealtime(buttonClip.length);
                     SceneManager.LoadScene(1);
                     break;
                 case 2:
+                    AudioSource.PlayClipAtPoint(buttonClip, transform.position);
+                    yield return new WaitForSecondsRealtime(buttonClip.length);
                     Application.Quit();
                     break;
             }
