@@ -8,33 +8,11 @@ using UnityEngine.SceneManagement;
  * Load the given scene id otherwise load the next scene id
  *
  * @author Julien Delane
- * @version 17.10.25
+ * @version 17.10.27
  * @since 17.10.10
  */
 public class LevelLoader : MonoBehaviour
 {
-    /**
-     * Var that is true when the player finish the level.
-     *
-     * @since 17.10.10
-     */
-    private bool isEnd = false;
-
-    /**
-     * The time during the screen fade.
-     *
-     * @since 17.10.10
-     */
-    private float fadeDuration;
-
-    /**
-     * Time until the scene change.
-     *
-     * @unityParam
-     * @since 17.10.10
-     */
-    public float timer = 0.4f;
-
     /**
      * clip to play when the level change.
      *
@@ -54,39 +32,11 @@ public class LevelLoader : MonoBehaviour
     /**
      * If the level is finished wait the fade animation finish to change the level.
      *
-     * @since 17.10.10
+     * @since 17.10.27
      */
-    private void Update()
-    {
-        if (isEnd)
-        {
-            //wait until the end of the animation and the clip
-            timer = timer - Time.deltaTime;
-            //when the animation and the clip end, load the next level
-            if (timer <= 0)
-            {
-                if (scene == -1)
-                {
-                    SceneManager.LoadScene(SceneManager.GetSceneAt(0).buildIndex + 1);
-                }
-                else
-                {
-                    SceneManager.LoadScene(scene);
-                }
-            }
-        }
-    }
-
-    /**
-     * Launch the clip and the fade and the clip then load the level.
-     *
-     * @return IEnumerator
-     * @since 17.10.10
-     */
-     //TODO: change to make this method work so we don't call the update method anymore
     private IEnumerator changeLevel()
     {
-        fadeDuration = Fading.beginFade(1);
+        float fadeDuration = Fading.beginFade(1);
         AudioSource.PlayClipAtPoint(clip, transform.position);
         yield return new WaitForSeconds(fadeDuration);
         if (scene == -1)
@@ -107,12 +57,9 @@ public class LevelLoader : MonoBehaviour
      */
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.tag == "Rob")
+        if (collider.tag.CompareTo("Rob") == 0)
         {
-            fadeDuration = Fading.beginFade(1);
-            AudioSource.PlayClipAtPoint(clip, transform.position);
-            changeLevel();
-            isEnd = true;
+            StartCoroutine(changeLevel());
         }
     }
 }

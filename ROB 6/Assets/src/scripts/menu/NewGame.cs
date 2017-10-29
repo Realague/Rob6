@@ -18,7 +18,7 @@ public class NewGame : MonoBehaviour
      *
      * @since 17.10.14
      */
-	public void Update()
+	private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {

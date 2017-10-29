@@ -28,7 +28,7 @@ Example: <code>CONSTANT_NAME</code>
 ### Code documentation
 
 For the code documentation, we will be using the [JavaDoc](https://en.wikipedia.org/wiki/Javadoc) read this to understand how document your method and class.
-For version format we will be using the date format DD.MM.YYYY in the @version and @since.
+For version format we will be using the date format YYY.MM.DD in the @version and @since.
 
 ### Git and github
 

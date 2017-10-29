@@ -21,11 +21,11 @@ public class Zone : MonoBehaviour
     private Transform firePoint;
 
     /**
-     * Cooldown of the turret.
+     * Define if the turret can shoot.
      *
      * @since 17.10.11
      */
-    private float cooldown = 0.05f;
+    private bool canShoot = true;
 
     /**
      * List of sound.
@@ -84,16 +84,6 @@ public class Zone : MonoBehaviour
     }
 
     /**
-     * Manage the cooldown of the turret.
-     *
-     * @since 17.10.11
-     */
-	private void Update()
-    {
-        cooldown -= Time.deltaTime;
-    }
-
-    /**
      * Manage who enter in the area, shoot in his direction and work if there are several player in the area.
      *
      * @param collider target
@@ -101,7 +91,7 @@ public class Zone : MonoBehaviour
      */
     private void OnTriggerStay2D(Collider2D collider)
     {
-        if (collider.tag == "Rob")
+        if (collider.tag.CompareTo("Rob") == 0)
         {
             shortest = Vector2.Distance(this.transform.position, dist[0].transform.position);
             foreach (GameObject rob in dist)
@@ -116,13 +106,25 @@ public class Zone : MonoBehaviour
             {
                 Quaternion rotation = Quaternion.LookRotation(collider.transform.position - transform.position, transform.TransformDirection(Vector3.up));
                 transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
-                if (cooldown <= 0)
+                if (canShoot)
                 {
                     shoot();
-                    cooldown = 0.1f;
+                    StartCoroutine(cooldown());
                 }
             }
         }
+    }
+
+    /**
+     * If the level is finished wait the fade animation finish to change the level.
+     *
+     * @since 17.10.28
+     */
+    private IEnumerator cooldown()
+    {
+        canShoot = false;
+        yield return new WaitForSeconds(0.1f);
+        canShoot = true;
     }
 
     /**
@@ -148,7 +150,7 @@ public class Zone : MonoBehaviour
      */
     private void OnTriggerExit2D(Collider2D collider)
     {
-        if (collider.tag == "Rob")
+        if (collider.tag.CompareTo("Rob") == 0)
         {
             lol[0].Stop();
             lol[1].Play();
@@ -163,7 +165,7 @@ public class Zone : MonoBehaviour
      */
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.tag == "Rob")
+        if (collider.tag.CompareTo("Rob") == 0)
         {
             lol[0].Play();
         }

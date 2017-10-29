@@ -20,7 +20,7 @@ public class DestroyTrail : MonoBehaviour{
      */
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.name == "trail(Clone)")
+        if (collider.name.CompareTo("trail(Clone)") == 0)
         {
             Destroy(collider.gameObject);
         }

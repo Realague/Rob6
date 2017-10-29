@@ -10,7 +10,7 @@ public class FlipCreatedObject : MonoBehaviour
 
     public GameObject spawnPlat;
 
-    public void Start()
+    private void Start()
     {
         if (PlayerManager.current.transform.localScale.x < 0)
         {
@@ -23,9 +23,9 @@ public class FlipCreatedObject : MonoBehaviour
         }
     }
 
-    public void OnTriggerStay2D(Collider2D collider)
+    private void OnTriggerStay2D(Collider2D collider)
     {
-        if (collider.tag == "Rob")
+        if (collider.tag.CompareTo("Rob") == 0)
         {
             Physics2D.IgnoreCollision(collider, colliders[0], false);
             if (Input.GetKey("s") && collider.name == PlayerManager.current.name)
@@ -35,9 +35,9 @@ public class FlipCreatedObject : MonoBehaviour
         }
     }
 
-    public void OnTriggerExit2D(Collider2D collider)
+    private void OnTriggerExit2D(Collider2D collider)
     {
-        if (collider.tag == "Rob")
+        if (collider.tag.CompareTo("Rob") == 0)
         {
             Physics2D.IgnoreCollision(collider, colliders[0], true);
         }

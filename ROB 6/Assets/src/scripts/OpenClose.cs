@@ -8,7 +8,7 @@ using UnityEngine.UI;
  *
  * @author Rémi Wickuler
  * @author Julien Delane
- * @version 17.10.15
+ * @version 17.10.26
  * @since 17.10.10
  */
 public class OpenClose : MonoBehaviour
@@ -27,7 +27,11 @@ public class OpenClose : MonoBehaviour
      */
     private bool canInteract = false;
 
-    //TODO: move the variable
+    /**
+     * The temp timer.
+     *
+     * @since 17.10.10
+     */
     private float tempTimer;
 
     /**
@@ -38,7 +42,7 @@ public class OpenClose : MonoBehaviour
     private Vector2 gatePosition;
 
     /**
-     * If nb_open equals 1 the gate will open one time else it can be open/close as many time as you want.
+     * If nbOpen equals 1 the gate will open one time else it can be open/close as many time as you want.
      * nb open equals 1 if openOnce is true
      *
      * @since 17.10.10
@@ -46,12 +50,12 @@ public class OpenClose : MonoBehaviour
     private int nbTimesOpen = 2;
 
     /**
-     * Sound to play when the object move.
+     * Clip to play when the object move.
      *
      * @unityParam
      * @since 17.10.10
      */
-    public AudioClip sound;
+    public AudioClip clip;
 
     /**
      * If true the player can only interact with the button one time.
@@ -63,7 +67,7 @@ public class OpenClose : MonoBehaviour
 
     /**
      * Distance of the movement of the game object.
-     * If minus 0 will close then open the gate otherwise it will open then close
+     * If < 0 will close then open the gate otherwise it will open then close
      *
      * @unityParam
      * @since 17.10.10
@@ -100,39 +104,19 @@ public class OpenClose : MonoBehaviour
      * @unityParam
      * @since 17.10.10
      */
-    public Text protect;
-
-    /**
-     * Timer if the gate is protected.
-     *
-     * @since 17.10.10
-     */
-    private float timer2;
-
-    /**
-     * The text to display if we can't open the gate.
-     *
-     * @since 17.10.10
-     */
-    private float speed = 5f;
-
-    private float test;
+    public Text protectionText;
 
     /**
      * Init the gate position.
      *
      * @since 17.10.10
      */
-    private void Start()
+    protected void Start()
     {
-        if (openOnce)
-        {
-            nbTimesOpen = 1;
-        }
         gatePosition.x = gate.transform.position.x;
         gatePosition.y = gate.transform.position.y;
         distance = -distance;
-        protect.enabled = false;
+        protectionText.enabled = false;
     }
 
     /**
@@ -140,16 +124,14 @@ public class OpenClose : MonoBehaviour
      *
      * @since 17.10.10
      */
-    private void Update()
+    protected void Update()
     {
-        //catch if the button e is pressed and then initialise some value
         button = Input.GetKeyDown(KeyCode.E);
-        if (button && canInteract && tempTimer <= 0 && (nbTimesOpen == 2 || nbTimesOpen == 1))
+        if (button && canInteract && tempTimer <= 0 && nbTimesOpen != 0)
         {
-            if (protection == true && PlayerManager.current.name != "Rob.H")
+            if (protection == true && PlayerManager.current.name.CompareTo("Rob.H") != 0)
             {
-                protect.enabled = true;
-                
+                StartCoroutine(protectedMessage());
             }
             else
             {
@@ -157,27 +139,32 @@ public class OpenClose : MonoBehaviour
                 tempTimer = timer;
                 button = false;
                 gatePosition.y = gate.transform.position.y;
-                protect.enabled = false;
+                AudioSource.PlayClipAtPoint(clip, gate.transform.position);
             }
         }
-       if (protect.enabled == true && timer2 <= Time.time)
-        {
-            protect.enabled = false;
-        }
-       else if (timer2 <= Time.time)
-            timer2 = Time.time + speed;
-        //play the sound
-        if (tempTimer == timer)
-            AudioSource.PlayClipAtPoint(sound, gate.transform.position);
         //move the object
         if (tempTimer > 0)
+        {
+            gate.transform.position = new Vector2(gatePosition.x, gatePosition.y - (distance * (tempTimer - timer) / timer));
+            //if we need to interact only one time
+            if (openOnce)
             {
-                gate.transform.position = new Vector2(gatePosition.x, gatePosition.y - (distance * (tempTimer - timer) / timer));
-                //if we need to interact once
-                if (nbTimesOpen == 1)
-                    nbTimesOpen = 0;
+                nbTimesOpen = 0;
             }
-        tempTimer = tempTimer - Time.deltaTime;
+            tempTimer = tempTimer - Time.deltaTime;
+        }
+    }
+
+    /**
+     * Display the protected text for 1 seconds.
+     *
+     * @since 17.10.26
+     */
+    public IEnumerator protectedMessage()
+    {
+        protectionText.enabled = true;
+        yield return new WaitForSecondsRealtime(1);
+        protectionText.enabled = false;
     }
 
     /**
@@ -206,7 +193,7 @@ public class OpenClose : MonoBehaviour
      */
     private void OnTriggerExit2D(Collider2D collider)
     {
-        if(collider.name == PlayerManager.current.name)
+        if (collider.name == PlayerManager.current.name)
         {
             canInteract = false;
         }

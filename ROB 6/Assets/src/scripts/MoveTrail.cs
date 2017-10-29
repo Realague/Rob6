@@ -47,11 +47,11 @@ public class MoveTrail : MonoBehaviour
      */
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.name != "Turret")
+        if (collider.name.CompareTo("Turret") != 0)
         {
-            if (collider.tag == "Rob" && collider.name != "Rob.B")
+            if (collider.tag.CompareTo("Rob") == 0 && collider.name.CompareTo("Rob.B") != 0)
             {
-                PlayerController.death = true;
+                Restarter.isDead = true;
             }
             Destroy(gameObject);
         }

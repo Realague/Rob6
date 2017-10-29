@@ -64,7 +64,7 @@ public class Launcher : MonoBehaviour
         {
             sprite.sortingOrder = spriteRob.sortingOrder + 1;
         }
-        if (PlayerManager.current.name == "Rob.L")
+        if (PlayerManager.current.name.CompareTo("Rob.L") == 0)
         {
             if (Input.GetKeyDown("z") && ((PlayerManager.current.transform.localScale.x > 0 && transform.rotation.z < 0.4) 
                                         || (PlayerManager.current.transform.localScale.x < 0 && transform.rotation.z > -0.4)))
@@ -99,7 +99,7 @@ public class Launcher : MonoBehaviour
                     sc.SetActive(true);
                     sc.transform.position = new Vector3(spawn.transform.position.x, spawn.transform.position.y);
                     sc.GetComponent<Rigidbody2D>().AddForce(spawn.transform.forward * 50, ForceMode2D.Impulse);
-                    if (sc.tag != "scrap")
+                    if (sc.tag.CompareTo("scrap") != 0)
                     {
                         foreach (GameObject rob in Robs)
                         {    

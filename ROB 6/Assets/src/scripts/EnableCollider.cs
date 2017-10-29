@@ -38,7 +38,7 @@ public class EnableCollider : MonoBehaviour
      */
 	private void OnTriggerEnter2D(Collider2D collider)
     {
-       if (collider.tag == "Rob")
+        if (collider.tag.CompareTo("Rob") == 0)
         {
             edgeCollider.enabled = true;
         }
@@ -52,7 +52,7 @@ public class EnableCollider : MonoBehaviour
      */
     private void OnTriggerExit2D(Collider2D collider)
     {
-        if (collider.tag == "Rob")
+        if (collider.tag.CompareTo("Rob") == 0)
         {
             edgeCollider.enabled = false;
         }

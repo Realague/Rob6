@@ -7,7 +7,7 @@ using System.Collections.Generic;
  *
  * @author Rémi Wickuler
  * @author Julien Delane
- * @version 17.10.16
+ * @version 17.10.26
  * @since 17.10.05
  */
 public class GoInside : MonoBehaviour
@@ -22,7 +22,9 @@ public class GoInside : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.layer != 12)
+        {
             collider.gameObject.layer = 12;
+        }
     }
 
     /**
@@ -34,7 +36,9 @@ public class GoInside : MonoBehaviour
     void OnTriggerStay2D(Collider2D collider)
     {
         if (collider.gameObject.layer != 12)
+        {
             collider.gameObject.layer = 12;
+        }
     }
 
     /**
