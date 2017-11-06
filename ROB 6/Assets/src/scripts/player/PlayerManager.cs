@@ -105,7 +105,7 @@ public class PlayerManager : MonoBehaviour
         inventory = new Dictionary<string, List<GameObject>>();
         Cursor.visible = false;
         current = spawn;
-        if (current.transform.name == "Rob.I" || current.transform.name == "Rob.B")
+        if (current.transform.name == "Rob.I" || current.transform.name == "Rob.B" || current.transform.name == "Rob.6")
         {
             PlayerController.anim = current.GetComponent<Animator>();
         }

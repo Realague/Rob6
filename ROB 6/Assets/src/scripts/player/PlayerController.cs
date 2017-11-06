@@ -213,7 +213,7 @@ public class PlayerController : MonoBehaviour
                 x = 0;
                 run = false;
             }
-            if (transform.name.CompareTo("Rob.I") == 0 || transform.name.CompareTo("Rob.B") == 0)
+            if (transform.name.CompareTo("Rob.I") == 0 || transform.name.CompareTo("Rob.B") == 0 || transform.name.CompareTo("Rob.6") == 0 )
             {
                 anim.SetBool("run", run);
             }
