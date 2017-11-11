@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
  * PauseMenu.
  *
  * @author Julien Delane
- * @version 17.10.28
+ * @version 17.10.31
  * @since 17.10.11
  */
 public class PauseMenu : MonoBehaviour
@@ -58,16 +58,31 @@ public class PauseMenu : MonoBehaviour
     private bool active;
 
     /**
+     * The position of the cursor.
+     *
+     * @since 17.10.31
+     */
+    private float cursorPosition;
+
+    /**
+     * Offset between index.
+     *
+     * @since 17.10.31
+     */
+    private float offset = -250;
+
+    /**
      * Hide the menu when the level start.
      *
      * @since 17.10.11
      */
     private void Start()
     {
+        cursorPosition = cursor.transform.position.y;
         menu.SetActive(false);
         active = false;
     }
-	
+
     /**
      * Catch the different action in the pause menu.
      *
@@ -102,7 +117,7 @@ public class PauseMenu : MonoBehaviour
                 {
                     i--;
                 }
-                cursor.transform.position = new Vector2(cursor.transform.position.x, 550 + 250 * i);
+                cursor.transform.position = new Vector2(cursor.transform.position.x, cursorPosition + offset * i);
             }
             else if (Input.GetKeyDown("z"))
             {
@@ -115,7 +130,7 @@ public class PauseMenu : MonoBehaviour
                 {
                     ++i;
                 }
-                cursor.transform.position = new Vector2(cursor.transform.position.x, 550 + 250 * i);
+                cursor.transform.position = new Vector2(cursor.transform.position.x, cursorPosition + offset * i);
             }
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -137,6 +152,7 @@ public class PauseMenu : MonoBehaviour
                 PlayerController.stop = false;
                 AudioSource.PlayClipAtPoint(buttonClip, transform.position);
                 yield return new WaitForSecondsRealtime(buttonClip.length);
+                ProfileScript.instance.playerProfile.updateProfile();
                 Time.timeScale = 1;
                 SceneManager.LoadScene(0);
                 break;

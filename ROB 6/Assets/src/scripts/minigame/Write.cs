@@ -19,7 +19,7 @@ public class Write : MonoBehaviour
      * @unityParam
      * @since 17.10.11
      */
-	public InputField slc;
+	public InputField inputField;
 
     /**
      * Init the input field.
@@ -28,7 +28,7 @@ public class Write : MonoBehaviour
      */
 	private void Start()
     {
-		slc.ActivateInputField();
+		inputField.ActivateInputField();
 	}
 
 }

@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
      *
      * @since 17.10.24
      */
-    private void onAwake() {
+    private void Awake() {
         if (instance == null)
 		{
             instance = this;
