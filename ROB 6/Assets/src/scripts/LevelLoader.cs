@@ -36,11 +36,13 @@ public class LevelLoader : MonoBehaviour
      */
     private IEnumerator changeLevel()
     {
-        float fadeDuration = Fading.beginFade(1);
+        Fading.beginFade(1);
         AudioSource.PlayClipAtPoint(clip, transform.position);
-        yield return new WaitForSeconds(fadeDuration);
+        yield return new WaitForSeconds(clip.length);
         if (scene == -1)
         {
+            ProfileScript.instance.playerProfile.LevelId = SceneManager.GetSceneAt(0).buildIndex + 1;
+            ProfileScript.instance.playerProfile.updateProfile();
             SceneManager.LoadScene(SceneManager.GetSceneAt(0).buildIndex + 1);
         }
         else
@@ -62,4 +64,5 @@ public class LevelLoader : MonoBehaviour
             StartCoroutine(changeLevel());
         }
     }
+    
 }
