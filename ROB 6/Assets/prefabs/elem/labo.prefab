@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 61327937391326352}
   - component: {fileID: 61656605971090694}
   m_Layer: 9
-  m_Name: labo
+  m_Name: Labo
   m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

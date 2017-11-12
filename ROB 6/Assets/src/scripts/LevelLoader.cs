@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
  * Load the given scene id otherwise load the next scene id
  *
  * @author Julien Delane
- * @version 17.10.27
+ * @version 17.11.12
  * @since 17.10.10
  */
 public class LevelLoader : MonoBehaviour
@@ -41,9 +41,9 @@ public class LevelLoader : MonoBehaviour
         yield return new WaitForSeconds(clip.length);
         if (scene == -1)
         {
-            ProfileScript.instance.playerProfile.LevelId = SceneManager.GetSceneAt(0).buildIndex + 1;
+            ProfileScript.instance.playerProfile.LevelId += 1;
             ProfileScript.instance.playerProfile.updateProfile();
-            SceneManager.LoadScene(SceneManager.GetSceneAt(0).buildIndex + 1);
+            SceneManager.LoadScene(ProfileScript.instance.playerProfile.LevelId);
         }
         else
         {
