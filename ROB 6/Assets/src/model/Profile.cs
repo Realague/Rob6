@@ -92,9 +92,9 @@ public class Profile
 		DataBaseManager.instance.dbConnection.Open();
 		using (IDbCommand dbCommand = DataBaseManager.instance.dbConnection.CreateCommand())
 		{
-			string sqlQuery =  "INSERT INTO Profile (name, level_id, time_spend, creation_date, last_update_date) VALUES (@name, @level_id, @time_spend, @current_date, @current_date)";
+			string sqlQuery = "INSERT INTO Profile (name, level_id, time_spend, creation_date, last_update_date) VALUES (@name, @level_id, @time_spend, @current_date, @current_date)";
 			dbCommand.Parameters.Add(new SqliteParameter("@name", name));
-			dbCommand.Parameters.Add(new SqliteParameter("@level_id", 1));
+			dbCommand.Parameters.Add(new SqliteParameter("@level_id", 6));
 			dbCommand.Parameters.Add(new SqliteParameter("@time_spend", 1));
 			dbCommand.Parameters.Add(new SqliteParameter("@current_date", DateTime.Now));
 			dbCommand.CommandText = sqlQuery;
@@ -114,7 +114,7 @@ public class Profile
 		using (IDbCommand dbCommand = DataBaseManager.instance.dbConnection.CreateCommand())
 		{
 			string sqlQuery =  "UPDATE Profile SET last_update_date = @current_date, time_spend = @time_spend, level_id = @level_id WHERE id = @id";
-			this.TimeSpend = this.TimeSpend + (DateTime.Now.Ticks - LastUpdateDate.Ticks);
+			this.TimeSpend = this.TimeSpend + (DateTime.Now.Ticks - LastUpdateDate.Ticks) / 10000000;
 			this.LastUpdateDate = DateTime.Now;
 			dbCommand.Parameters.Add(new SqliteParameter("@id", this.Id));
 			dbCommand.Parameters.Add(new SqliteParameter("@current_date", this.LastUpdateDate));
@@ -189,7 +189,7 @@ public class Profile
 		DataBaseManager.instance.dbConnection.Open();
         using (IDbCommand dbCommand = DataBaseManager.instance.dbConnection.CreateCommand())
 		{
-			string sqlQuery = "SELECT * FROM Profile ORDER BY last_update_date ASC LIMIT 1";
+			string sqlQuery = "SELECT * FROM Profile ORDER BY last_update_date DESC LIMIT 1";
 			dbCommand.CommandText = sqlQuery;
 			using (IDataReader reader = dbCommand.ExecuteReader())
 			{

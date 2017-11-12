@@ -2,25 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Mono.Data.Sqlite;
-using System.Data;
-using System;
 
 /**
  * MainMenu.
  *
  * @author Rémi Wickuler
  * @author Julien Delane
- * @version 17.11.11
+ * @version 17.10.31
  * @since 17.10.10
  */
-public class MainMenu : MonoBehaviour
+public class OptionMenu : MonoBehaviour
 {
     /**
      * The button clip.
      *
  	 * @unityParam
-     * @since 17.10.28
+     * @since 17.11.11
      */
     public AudioClip buttonClip;
 
@@ -28,45 +25,38 @@ public class MainMenu : MonoBehaviour
      * The switch clip.
      *
 	 * @unityParam
-     * @since 17.10.28
+     * @since 17.11.11
      */
     public AudioClip switchClip;
 
     /**
      * The index of the cursor.
      *
-     * @since 17.10.10
+     * @since 17.11.11
      */
     private int i = 0;
 
     /**
      * Button list.
      *
-     * @since 17.11.08
+     * @since 17.11.11
      */
      public List<GameObject> buttons;
 
     /**
      * Load the localization when the game start.
      *
-     * @since 17.10.10
+     * @since 17.11.11
      */
     private void Start()
     {
-        string lang = Lang.getLanguage();
-        string code = LocalizationManager.instance.GetLocalizedValue("LANGUAGE.CODE");
-        if (code.CompareTo("Localized text not found") == 0 || code.CompareTo(lang.Substring(0, lang.Length - 1)) == 0)
-        {
-            LocalizationManager.instance.LoadLocalizedText(lang);
-            SceneManager.LoadScene(SceneManager.GetSceneAt(0).name);
-        }
-        transform.position = new Vector2(transform.position.x, buttons[0].transform.position.y);
+		transform.position = new Vector2(transform.position.x, buttons[i].transform.position.y);
     }
 
     /**
      * Check if the key to move the cursor position are pressed then call the method to move the cursor and call the select method.
      *
-     * @since 17.10.10
+     * @since 17.11.11
      */
 	private void Update()
     {
@@ -75,7 +65,7 @@ public class MainMenu : MonoBehaviour
             AudioSource.PlayClipAtPoint(switchClip, transform.position);
             if (i == 0)
             {
-                i = 4;
+                i = 0;
             }
             else
             {
@@ -86,7 +76,7 @@ public class MainMenu : MonoBehaviour
         else if (Input.GetKeyDown("s"))
         {
             AudioSource.PlayClipAtPoint(switchClip, transform.position);
-            if (i == 4)
+            if (i == 0)
             {
                 i = 0;
             }
@@ -102,7 +92,7 @@ public class MainMenu : MonoBehaviour
     /**
      * Check if the player select an option and launch it.
      *
-     * @since 17.10.28
+     * @since 17.11.11
      */
     private IEnumerator select()
     {
@@ -112,27 +102,8 @@ public class MainMenu : MonoBehaviour
             switch (i)
             {
                 case 0:
-                    Profile.getLastProfileEdited();
                     yield return new WaitForSecondsRealtime(buttonClip.length);
-                    SceneManager.LoadScene(ProfileScript.instance.playerProfile.LevelId);
-                    break;
-                case 1:
-                    yield return new WaitForSecondsRealtime(buttonClip.length);
-                    SceneManager.LoadScene("ProfileCreation");
-                    break;
-                case 2:
-                    //TODO: profile list
-                    yield return new WaitForSecondsRealtime(buttonClip.length);
-                    SceneManager.LoadScene("ProfileList");
-                    break;
-                case 3:
-                    //TODO: option
-                    yield return new WaitForSecondsRealtime(buttonClip.length);
-                    SceneManager.LoadScene(3);
-                    break;
-                case 4:
-                    yield return new WaitForSecondsRealtime(buttonClip.length);
-                    Application.Quit();
+                    SceneManager.LoadScene("LangSelection");
                     break;
             }
         }

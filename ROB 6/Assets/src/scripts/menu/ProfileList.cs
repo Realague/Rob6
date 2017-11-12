@@ -2,16 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /**
  * ProfileList.
  *
  * @author Julien Delane
- * @version 17.11.11
+ * @version 17.11.12
  * @since 17.11.04
  */
 public class ProfileList : MonoBehaviour
 {
+    /**
+     * Nb row.
+     *
+     * @since 17.11.11
+     */
+    private int nbRow = 12;
+
 	/**
 	 * The profile prefab.
 	 *
@@ -97,7 +105,11 @@ public class ProfileList : MonoBehaviour
         profileObjects = new List<GameObject> ();
 		profiles = Profile.getAllProfile();
 		showProfiles();
-	}
+        if (profileObjects.Count == 0)
+        {
+            Destroy(cursor);
+        }
+    }
 	
     /**
      * Check if the key to move the cursor position are pressed then call the method to move the cursor and call the select method.
@@ -112,7 +124,7 @@ public class ProfileList : MonoBehaviour
             if (indexDown != 0 && i == 0)
             {
                 indexDown--;
-                for (int x = 0; x + indexDown < profiles.Count && x < 12; x++)
+                for (int x = 0; x + indexDown < profiles.Count && x < nbRow; x++)
                 {
                     Profile profile = profiles[x + indexDown];
 			        profileObjects[x].GetComponent<ProfileCell>().setProfile(profile.Name, profile.LastUpdateDate, profile.CreationDate, profile.TimeSpend);
@@ -127,16 +139,16 @@ public class ProfileList : MonoBehaviour
         else if (Input.GetKeyDown("s"))
         {
             AudioSource.PlayClipAtPoint(switchClip, transform.position);
-            if (i == 11 && indexDown + 11 != profiles.Count - 1)
+            if (i == nbRow - 1 && indexDown + nbRow - 1 != profiles.Count - 1)
             {
                 indexDown++;
-                for (int x = 0; x + indexDown < profiles.Count && x < 12; x++)
+                for (int x = 0; x + indexDown < profiles.Count && x < nbRow; x++)
                 {
                     Profile profile = profiles[x + indexDown];
 			        profileObjects[x].GetComponent<ProfileCell>().setProfile(profile.Name, profile.LastUpdateDate, profile.CreationDate, profile.TimeSpend);
                 }
             }
-            else if (i != 11 && indexDown + i != profiles.Count - 1)
+            else if (i != nbRow - 1 && indexDown + i != profiles.Count - 1)
             {
                 ++i;
             }
@@ -158,14 +170,14 @@ public class ProfileList : MonoBehaviour
             yield return new WaitForSecondsRealtime(buttonClip.length);
 			SceneManager.LoadScene(profiles[i].LevelId);
         }
-        else if (Input.GetKeyDown(KeyCode.Backspace))
+        if (Input.GetKeyDown(KeyCode.Backspace))
         {
             AudioSource.PlayClipAtPoint(buttonClip, transform.position);
             yield return new WaitForSecondsRealtime(buttonClip.length);
             Profile.deleteProfile(profiles[i].Id);
             SceneManager.LoadScene(SceneManager.GetSceneAt(0).buildIndex);
         }
-        else if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             AudioSource.PlayClipAtPoint(buttonClip, transform.position);
             yield return new WaitForSecondsRealtime(buttonClip.length);
@@ -180,7 +192,7 @@ public class ProfileList : MonoBehaviour
 	 */
 	private void showProfiles()
 	{
-		for (int i = 0; i < profiles.Count && i < 12; i++)
+		for (int i = 0; i < profiles.Count && i < nbRow; i++)
 		{
 			GameObject profileObject = Instantiate(profilePrefab);
 			Profile profile = profiles[i];

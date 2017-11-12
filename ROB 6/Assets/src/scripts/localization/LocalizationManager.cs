@@ -61,8 +61,8 @@ public class LocalizationManager : MonoBehaviour
     public void LoadLocalizedText(string fileName)
     {
         localizedText = new Dictionary<string, string>();
-        string filePath = Application.dataPath + "/StreamingAssets/lang/" + fileName + ".lang";
-        if (File.Exists (filePath))
+        string filePath = Application.dataPath + "/StreamingAssets/lang/" + fileName.Substring(0, fileName.Length - 1) + ".lang";
+        if (File.Exists(filePath))
 		{
             string[] data = File.ReadAllText(filePath).Split('\n');
 			string[] tmp;
@@ -78,7 +78,7 @@ public class LocalizationManager : MonoBehaviour
         }
 		else
         {
-            Debug.LogError("Cannot find file!");
+            Debug.LogError("Cannot find file! " + filePath);
         }
         isReady = true;
     }

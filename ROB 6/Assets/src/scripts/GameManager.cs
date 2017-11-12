@@ -6,7 +6,7 @@ using UnityEngine;
  * GameManager.
  *
  * @author Julien Delane
- * @version 17.10.24
+ * @version 17.11.12
  * @since 17.10.24
  */
 public class GameManager : MonoBehaviour
@@ -19,18 +19,12 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
 
     /**
-     * Instance of the script.
-     *
-     * @since 17.10.26
-     */
-    public static bool isDead = false;
-
-    /**
      * On awake of the script check if the cripts only exist one time.
      *
      * @since 17.10.24
      */
-    private void Awake() {
+    private void Awake()
+    {
         if (instance == null)
 		{
             instance = this;
