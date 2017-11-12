@@ -37,22 +37,6 @@ public class ProfileList : MonoBehaviour
 	public Transform profileParent;
 
     /**
-     * The button clip.
-     *
-	 * @unityParam
-     * @since 17.11.05
-     */
-    public AudioClip buttonClip;
-
-    /**
-     * The switch clip.
-     *
-	 * @unityParam
-     * @since 17.11.05
-     */
-    public AudioClip switchClip;
-
-    /**
      * The index of the cursor.
      *
      * @since 17.11.05
@@ -120,7 +104,7 @@ public class ProfileList : MonoBehaviour
 	{
 		if (Input.GetKeyDown("z"))
         {
-            AudioSource.PlayClipAtPoint(switchClip, transform.position);
+            AudioSource.PlayClipAtPoint(ProfileScript.instance.switchClip, transform.position);
             if (indexDown != 0 && i == 0)
             {
                 indexDown--;
@@ -138,7 +122,7 @@ public class ProfileList : MonoBehaviour
         }
         else if (Input.GetKeyDown("s"))
         {
-            AudioSource.PlayClipAtPoint(switchClip, transform.position);
+            AudioSource.PlayClipAtPoint(ProfileScript.instance.switchClip, transform.position);
             if (i == nbRow - 1 && indexDown + nbRow - 1 != profiles.Count - 1)
             {
                 indexDown++;
@@ -166,21 +150,21 @@ public class ProfileList : MonoBehaviour
     {
         if (Input.GetKeyDown("space"))
         {
-            AudioSource.PlayClipAtPoint(buttonClip, transform.position);
-            yield return new WaitForSecondsRealtime(buttonClip.length);
+            AudioSource.PlayClipAtPoint(ProfileScript.instance.buttonClip, transform.position);
+            yield return new WaitForSecondsRealtime(ProfileScript.instance.buttonClip.length);
 			SceneManager.LoadScene(profiles[i].LevelId);
         }
         if (Input.GetKeyDown(KeyCode.Backspace))
         {
-            AudioSource.PlayClipAtPoint(buttonClip, transform.position);
-            yield return new WaitForSecondsRealtime(buttonClip.length);
+            AudioSource.PlayClipAtPoint(ProfileScript.instance.buttonClip, transform.position);
+            yield return new WaitForSecondsRealtime(ProfileScript.instance.buttonClip.length);
             Profile.deleteProfile(profiles[i].Id);
             SceneManager.LoadScene(SceneManager.GetSceneAt(0).buildIndex);
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            AudioSource.PlayClipAtPoint(buttonClip, transform.position);
-            yield return new WaitForSecondsRealtime(buttonClip.length);
+            AudioSource.PlayClipAtPoint(ProfileScript.instance.buttonClip, transform.position);
+            yield return new WaitForSecondsRealtime(ProfileScript.instance.buttonClip.length);
             SceneManager.LoadScene(0);
         }
     }

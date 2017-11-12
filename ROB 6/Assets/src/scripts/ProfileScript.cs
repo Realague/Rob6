@@ -6,11 +6,27 @@ using UnityEngine;
  * ProfileScript.
  *
  * @author Julien Delane
- * @version 17.11.01
+ * @version 17.11.12
  * @since 17.11.01
  */
 public class ProfileScript : MonoBehaviour
 {
+    /**
+     * The button clip.
+     *
+ 	 * @unityParam
+     * @since 17.11.12
+     */
+    public AudioClip buttonClip;
+
+    /**
+     * The switch clip.
+     *
+	 * @unityParam
+     * @since 17.11.12
+     */
+    public AudioClip switchClip;
+
 	/**
      * Variable to reach this object from every where.
      *

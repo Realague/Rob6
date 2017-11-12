@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cbbde807351a5542bced9ea75f705f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: MENU.MAIN.CONTINUE
+  key: MENU.MAIN.NEW_GAME
 --- !u!1 &109410962
 GameObject:
   m_ObjectHideFlags: 0
@@ -955,8 +955,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06c8b3d84715ef746b427e9a85e5f2b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonClip: {fileID: 8300000, guid: 3e3c0b1d329d94348b82a7834182484d, type: 3}
-  switchClip: {fileID: 8300000, guid: 3e3c0b1d329d94348b82a7834182484d, type: 3}
   buttons:
   - {fileID: 1360023264}
   - {fileID: 109410962}
@@ -1123,6 +1121,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2de7f4ebd6692b74285a5ff4d2b7bfbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonClip: {fileID: 8300000, guid: 3e3c0b1d329d94348b82a7834182484d, type: 3}
+  switchClip: {fileID: 8300000, guid: 3e3c0b1d329d94348b82a7834182484d, type: 3}
 --- !u!1 &1360023264
 GameObject:
   m_ObjectHideFlags: 0
@@ -1301,7 +1301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cbbde807351a5542bced9ea75f705f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: MENU.MAIN.NEW_GAME
+  key: MENU.MAIN.CONTINUE
 --- !u!114 &1681720274
 MonoBehaviour:
   m_ObjectHideFlags: 0

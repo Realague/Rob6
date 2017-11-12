@@ -8,27 +8,11 @@ using UnityEngine.SceneManagement;
  *
  * @author Rémi Wickuler
  * @author Julien Delane
- * @version 17.10.31
+ * @version 17.11.12
  * @since 17.10.10
  */
 public class OptionMenu : MonoBehaviour
 {
-    /**
-     * The button clip.
-     *
- 	 * @unityParam
-     * @since 17.11.11
-     */
-    public AudioClip buttonClip;
-
-    /**
-     * The switch clip.
-     *
-	 * @unityParam
-     * @since 17.11.11
-     */
-    public AudioClip switchClip;
-
     /**
      * The index of the cursor.
      *
@@ -62,7 +46,7 @@ public class OptionMenu : MonoBehaviour
     {
         if (Input.GetKeyDown("z"))
         {
-            AudioSource.PlayClipAtPoint(switchClip, transform.position);
+            AudioSource.PlayClipAtPoint(ProfileScript.instance.switchClip, transform.position);
             if (i == 0)
             {
                 i = 0;
@@ -75,7 +59,7 @@ public class OptionMenu : MonoBehaviour
         }
         else if (Input.GetKeyDown("s"))
         {
-            AudioSource.PlayClipAtPoint(switchClip, transform.position);
+            AudioSource.PlayClipAtPoint(ProfileScript.instance.switchClip, transform.position);
             if (i == 0)
             {
                 i = 0;
@@ -98,11 +82,11 @@ public class OptionMenu : MonoBehaviour
     {
         if (Input.GetKeyDown("space"))
         {
-            AudioSource.PlayClipAtPoint(buttonClip, transform.position);
+            AudioSource.PlayClipAtPoint(ProfileScript.instance.buttonClip, transform.position);
             switch (i)
             {
                 case 0:
-                    yield return new WaitForSecondsRealtime(buttonClip.length);
+                    yield return new WaitForSecondsRealtime(ProfileScript.instance.buttonClip.length);
                     SceneManager.LoadScene("LangSelection");
                     break;
             }

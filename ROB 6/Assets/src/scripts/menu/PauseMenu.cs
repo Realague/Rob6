@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
  * PauseMenu.
  *
  * @author Julien Delane
- * @version 17.10.31
+ * @version 17.11.12
  * @since 17.10.11
  */
 public class PauseMenu : MonoBehaviour
@@ -19,20 +19,6 @@ public class PauseMenu : MonoBehaviour
      * @since 17.10.28
      */
      private int i = 1;
-    
-    /**
-     * The button clip.
-     *
-     * @since 17.10.28
-     */
-    public AudioClip buttonClip;
-
-    /**
-     * The switch clip.
-     *
-     * @since 17.10.28
-     */
-    public AudioClip switchClip;
 
     /**
      * The cursor.
@@ -108,7 +94,7 @@ public class PauseMenu : MonoBehaviour
         {
             if (Input.GetKeyDown("s"))
             {
-                AudioSource.PlayClipAtPoint(switchClip, transform.position);
+                AudioSource.PlayClipAtPoint(ProfileScript.instance.switchClip, transform.position);
                 if (i == 0)
                 {
                     i = 1;
@@ -121,7 +107,7 @@ public class PauseMenu : MonoBehaviour
             }
             else if (Input.GetKeyDown("z"))
             {
-                AudioSource.PlayClipAtPoint(switchClip, transform.position);
+                AudioSource.PlayClipAtPoint(ProfileScript.instance.switchClip, transform.position);
                 if (i == 1)
                 {
                     i = 0;
@@ -150,15 +136,15 @@ public class PauseMenu : MonoBehaviour
         {
             case 0:
                 PlayerController.stop = false;
-                AudioSource.PlayClipAtPoint(buttonClip, transform.position);
-                yield return new WaitForSecondsRealtime(buttonClip.length);
+                AudioSource.PlayClipAtPoint(ProfileScript.instance.buttonClip, transform.position);
+                yield return new WaitForSecondsRealtime(ProfileScript.instance.buttonClip.length);
                 ProfileScript.instance.playerProfile.updateProfile();
                 Time.timeScale = 1;
                 SceneManager.LoadScene(0);
                 break;
             case 1:
-                AudioSource.PlayClipAtPoint(buttonClip, transform.position);
-                yield return new WaitForSecondsRealtime(buttonClip.length);
+                AudioSource.PlayClipAtPoint(ProfileScript.instance.buttonClip, transform.position);
+                yield return new WaitForSecondsRealtime(ProfileScript.instance.buttonClip.length);
                 Time.timeScale = 1;
                 menu.SetActive(false);
                 active = false;

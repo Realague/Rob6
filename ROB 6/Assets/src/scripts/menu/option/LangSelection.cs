@@ -37,22 +37,6 @@ public class LangSelection : MonoBehaviour
 	public Transform langParent;
 
     /**
-     * The button clip.
-     *
-	 * @unityParam
-     * @since 17.11.10
-     */
-    public AudioClip buttonClip;
-
-    /**
-     * The switch clip.
-     *
-	 * @unityParam
-     * @since 17.11.10
-     */
-    public AudioClip switchClip;
-
-    /**
      * The index of the cursor.
      *
      * @since 17.11.10
@@ -121,7 +105,7 @@ public class LangSelection : MonoBehaviour
 	{
 		if (Input.GetKeyDown("z"))
         {
-            AudioSource.PlayClipAtPoint(switchClip, transform.position);
+            AudioSource.PlayClipAtPoint(ProfileScript.instance.switchClip, transform.position);
             if (indexDown != 0 && i == 0)
             {
                 indexDown--;
@@ -138,7 +122,7 @@ public class LangSelection : MonoBehaviour
         }
         else if (Input.GetKeyDown("s"))
         {
-            AudioSource.PlayClipAtPoint(switchClip, transform.position);
+            AudioSource.PlayClipAtPoint(ProfileScript.instance.switchClip, transform.position);
             if (i == nbRow - 1 && indexDown + nbRow - 1 != langs.Count - 1)
             {
                 indexDown++;
@@ -165,15 +149,15 @@ public class LangSelection : MonoBehaviour
     {
         if (Input.GetKeyDown("space"))
         {
-            AudioSource.PlayClipAtPoint(buttonClip, transform.position);
-            yield return new WaitForSecondsRealtime(buttonClip.length);
+            AudioSource.PlayClipAtPoint(ProfileScript.instance.buttonClip, transform.position);
+            yield return new WaitForSecondsRealtime(ProfileScript.instance.buttonClip.length);
             langs[i + indexDown].selectLanguage();
             SceneManager.LoadScene(0);
         }
         else if (Input.GetKeyDown("escape"))
         {
-            AudioSource.PlayClipAtPoint(buttonClip, transform.position);
-            yield return new WaitForSecondsRealtime(buttonClip.length);
+            AudioSource.PlayClipAtPoint(ProfileScript.instance.buttonClip, transform.position);
+            yield return new WaitForSecondsRealtime(ProfileScript.instance.buttonClip.length);
             SceneManager.LoadScene(3);
         }
     }

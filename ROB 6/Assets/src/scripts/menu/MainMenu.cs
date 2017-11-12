@@ -11,26 +11,17 @@ using System;
  *
  * @author Rémi Wickuler
  * @author Julien Delane
- * @version 17.11.11
+ * @version 17.11.12
  * @since 17.10.10
  */
 public class MainMenu : MonoBehaviour
 {
     /**
-     * The button clip.
+     * The index of the cursor.
      *
- 	 * @unityParam
-     * @since 17.10.28
+     * @since 17.10.10
      */
-    public AudioClip buttonClip;
-
-    /**
-     * The switch clip.
-     *
-	 * @unityParam
-     * @since 17.10.28
-     */
-    public AudioClip switchClip;
+    private bool canContinue = true;
 
     /**
      * The index of the cursor.
@@ -53,6 +44,12 @@ public class MainMenu : MonoBehaviour
      */
     private void Start()
     {
+        if (Profile.getAllProfile().Count == 0)
+        {
+            canContinue = false;
+            Destroy(buttons[1]);
+            Destroy(buttons[2]);
+        }
         string lang = Lang.getLanguage();
         string code = LocalizationManager.instance.GetLocalizedValue("LANGUAGE.CODE");
         if (code.CompareTo("Localized text not found") == 0 || code.CompareTo(lang.Substring(0, lang.Length - 1)) == 0)
@@ -72,10 +69,14 @@ public class MainMenu : MonoBehaviour
     {
         if (Input.GetKeyDown("z"))
         {
-            AudioSource.PlayClipAtPoint(switchClip, transform.position);
+            AudioSource.PlayClipAtPoint(ProfileScript.instance.switchClip, transform.position);
             if (i == 0)
             {
                 i = 4;
+            }
+            else if (!canContinue && i == 3)
+            {
+                i = 0;
             }
             else
             {
@@ -85,10 +86,14 @@ public class MainMenu : MonoBehaviour
         }
         else if (Input.GetKeyDown("s"))
         {
-            AudioSource.PlayClipAtPoint(switchClip, transform.position);
+            AudioSource.PlayClipAtPoint(ProfileScript.instance.switchClip, transform.position);
             if (i == 4)
             {
                 i = 0;
+            }
+            else if (!canContinue && i == 0)
+            {
+                i = 3;
             }
             else
             {
@@ -108,30 +113,28 @@ public class MainMenu : MonoBehaviour
     {
         if (Input.GetKeyDown("space"))
         {
-            AudioSource.PlayClipAtPoint(buttonClip, transform.position);
+            AudioSource.PlayClipAtPoint(ProfileScript.instance.buttonClip, transform.position);
             switch (i)
             {
                 case 0:
-                    Profile.getLastProfileEdited();
-                    yield return new WaitForSecondsRealtime(buttonClip.length);
-                    SceneManager.LoadScene(ProfileScript.instance.playerProfile.LevelId);
-                    break;
-                case 1:
-                    yield return new WaitForSecondsRealtime(buttonClip.length);
+                    yield return new WaitForSecondsRealtime(ProfileScript.instance.buttonClip.length);
                     SceneManager.LoadScene("ProfileCreation");
                     break;
+                case 1:
+                    Profile.getLastProfileEdited();
+                    yield return new WaitForSecondsRealtime(ProfileScript.instance.buttonClip.length);
+                    SceneManager.LoadScene(ProfileScript.instance.playerProfile.LevelId);
+                    break;
                 case 2:
-                    //TODO: profile list
-                    yield return new WaitForSecondsRealtime(buttonClip.length);
+                    yield return new WaitForSecondsRealtime(ProfileScript.instance.buttonClip.length);
                     SceneManager.LoadScene("ProfileList");
                     break;
                 case 3:
-                    //TODO: option
-                    yield return new WaitForSecondsRealtime(buttonClip.length);
+                    yield return new WaitForSecondsRealtime(ProfileScript.instance.buttonClip.length);
                     SceneManager.LoadScene(3);
                     break;
                 case 4:
-                    yield return new WaitForSecondsRealtime(buttonClip.length);
+                    yield return new WaitForSecondsRealtime(ProfileScript.instance.buttonClip.length);
                     Application.Quit();
                     break;
             }
