@@ -52,7 +52,7 @@ public class MainMenu : MonoBehaviour
         }
         string lang = Lang.getLanguage();
         string code = LocalizationManager.instance.GetLocalizedValue("LANGUAGE.CODE");
-        if (code.CompareTo("Localized text not found") == 0 || code.CompareTo(lang.Substring(0, lang.Length - 1)) == 0)
+        if (code.CompareTo("Localized text not found") == 0 || code.CompareTo(lang) != 0)
         {
             LocalizationManager.instance.LoadLocalizedText(lang);
             SceneManager.LoadScene(SceneManager.GetSceneAt(0).name);
