@@ -202,7 +202,7 @@ public class PlayerController : MonoBehaviour
                 run = true;
                 facingRight = true;
             }
-            else if (Input.GetKey(KeyCode.Q))
+            else if (Input.GetKey(KeyCode.A))
             {
                 x = -1;
                 facingRight = false;
