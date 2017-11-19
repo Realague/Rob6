@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
  * Load the given scene id otherwise load the next scene id
  *
  * @author Julien Delane
- * @version 17.11.12
+ * @version 17.11.19
  * @since 17.10.10
  */
 public class LevelLoader : MonoBehaviour
@@ -19,7 +19,8 @@ public class LevelLoader : MonoBehaviour
      * @unityParam
      * @since 17.10.10
      */
-    public AudioClip clip;
+    [SerializeField]
+    private AudioClip clip;
 
     /**
      * Id of the scene.
@@ -27,7 +28,8 @@ public class LevelLoader : MonoBehaviour
      * @unityParam
      * @since 17.10.10
      */
-    public int scene = -1;
+    [SerializeField]
+    private int scene = -1;
 
     /**
      * If the level is finished wait the fade animation finish to change the level.

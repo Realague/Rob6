@@ -40,7 +40,8 @@ public class Zone : MonoBehaviour
      * @unityParam
      * @since 17.10.11
      */
-    public GameObject[] dist;
+    [SerializeField]
+    private GameObject[] dist;
 
     /**
      * The ray.
@@ -48,7 +49,8 @@ public class Zone : MonoBehaviour
      * @unityParam
      * @since 17.10.11
      */
-    public GameObject lineShot;
+    [SerializeField]
+    private GameObject lineShot;
 
     /**
      * Distance with the shortest rob.

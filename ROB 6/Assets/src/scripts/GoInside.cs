@@ -12,7 +12,6 @@ using System.Collections.Generic;
  */
 public class GoInside : MonoBehaviour
 {
-
     /**
      * Put the layer to 12 to change the brightness when the player enter in the area.
      *

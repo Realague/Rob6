@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
  *
  * @author Rémi Wickuler
  * @author Julien Delane
- * @version 17.11.12
+ * @version 17.11.19
  * @since 17.10.10
  */
 public class OptionMenu : MonoBehaviour
@@ -23,9 +23,11 @@ public class OptionMenu : MonoBehaviour
     /**
      * Button list.
      *
+     * @unityParam
      * @since 17.11.11
      */
-     public List<GameObject> buttons;
+    [SerializeField]
+    private List<GameObject> buttons;
 
     /**
      * Load the localization when the game start.

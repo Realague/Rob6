@@ -9,7 +9,7 @@ using UnityEngine.UI;
  * ProfileCell.
  *
  * @author Julien Delane
- * @version 17.11.05
+ * @version 17.11.19
  * @since 17.11.05
  */
 public class ProfileCell : MonoBehaviour
@@ -20,7 +20,8 @@ public class ProfileCell : MonoBehaviour
   	 * @unityParam
      * @since 17.11.05
      */
-     public GameObject profileName;
+    [SerializeField]
+    private GameObject profileName;
 
     /**
      * Update date of the profile.
@@ -28,7 +29,8 @@ public class ProfileCell : MonoBehaviour
   	 * @unityParam
      * @since 17.11.05
      */
-     public GameObject updateDate;
+    [SerializeField]
+    private GameObject updateDate;
 
     /**
      * Creation date of the profile.
@@ -36,7 +38,8 @@ public class ProfileCell : MonoBehaviour
   	 * @unityParam
      * @since 17.11.05
      */
-     public GameObject creationDate;
+    [SerializeField]
+    private GameObject creationDate;
 
     /**
      * Creation date of the profile.
@@ -44,7 +47,8 @@ public class ProfileCell : MonoBehaviour
   	 * @unityParam
      * @since 17.11.05
      */
-     public GameObject timeSpend;
+    [SerializeField]
+    private GameObject timeSpend;
 
     /**
      * Fill profile field.

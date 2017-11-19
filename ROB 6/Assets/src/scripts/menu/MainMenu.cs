@@ -35,7 +35,7 @@ public class MainMenu : MonoBehaviour
      *
      * @since 17.11.08
      */
-     public List<GameObject> buttons;
+    public List<GameObject> buttons;
 
     /**
      * Load the localization when the game start.

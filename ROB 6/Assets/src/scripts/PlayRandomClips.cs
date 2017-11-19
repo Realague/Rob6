@@ -6,7 +6,7 @@ using UnityEngine;
  * PlayRandomClips.
  *
  * @author Julien Delane
- * @version 17.10.16
+ * @version 17.11.19
  * @since 17.10.10
  */
 public class playRandomClips : MonoBehaviour
@@ -24,7 +24,8 @@ public class playRandomClips : MonoBehaviour
      * @unityParam
      * @since 17.10.10
      */
-    public string directory;
+     [SerializeField]
+    private string directory;
 
     /**
      * Load clips.

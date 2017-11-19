@@ -7,18 +7,28 @@ using UnityEngine;
  *
  * @author Rémi Wickuler
  * @author Julien Delane
- * @version 17.10.23
+ * @version 17.11.19
  * @since 17.10.10
  */
 public class Launcher : MonoBehaviour
 {
+    /**
+     * The list of robs.
+     *
+     * @unityParam
+     * @since 17.10.10
+     */
+    [SerializeField]
+    private GameObject[] Robs;
+    
     /**
      * The spawn point.
      *
      * @unityParam
      * @since 17.10.10
      */
-    public GameObject spawn;
+    [SerializeField]
+    private GameObject spawn;
 
     /**
      * The object to render when launch.
@@ -34,13 +44,6 @@ public class Launcher : MonoBehaviour
      */
     private SpriteRenderer spriteRob;
 
-    /**
-     * The list of robs.
-     *
-     * @unityParam
-     * @since 17.10.10
-     */
-    public GameObject[] Robs;
 
     /**
      * Init the object sprite and the sprite of rob.

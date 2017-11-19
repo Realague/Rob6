@@ -6,7 +6,7 @@ using UnityEngine;
  * Fading.
  *
  * @author Julien Delane
- * @version 17.10.25
+ * @version 17.11.19
  * @since 17.10.09
  */
 public class Fading : MonoBehaviour
@@ -18,7 +18,8 @@ public class Fading : MonoBehaviour
      * @unityParam
      * @since 17.10.09
      */
-    public Texture2D fadeOutTexture;
+    [SerializeField]
+    private Texture2D fadeOutTexture;
 
     /**
      * Fading speed.

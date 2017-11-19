@@ -7,7 +7,7 @@ using UnityEngine.UI;
  * LocalizedText.
  *
  * @author Julien Delane
- * @version 17.10.14
+ * @version 17.11.19
  * @since 17.10.14
  */
 public class LocalizedText : MonoBehaviour
@@ -18,7 +18,8 @@ public class LocalizedText : MonoBehaviour
      * @unityParam
      * @since 17.10.14
      */
-    public string key;
+    [SerializeField]
+    private string key;
 
     /**
      * On start change the text value to fit with the localization.

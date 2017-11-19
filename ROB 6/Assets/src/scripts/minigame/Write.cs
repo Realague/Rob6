@@ -8,7 +8,7 @@ using UnityEngine.UI;
  *
  * @author Rémi Wickuler
  * @author Julien Delane
- * @version 17.10.16
+ * @version 17.11.19
  * @since 17.10.11
  */
 public class Write : MonoBehaviour
@@ -19,7 +19,8 @@ public class Write : MonoBehaviour
      * @unityParam
      * @since 17.10.11
      */
-	public InputField inputField;
+    [SerializeField]
+	private InputField inputField;
 
     /**
      * Init the input field.
