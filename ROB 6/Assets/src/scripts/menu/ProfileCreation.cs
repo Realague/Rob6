@@ -22,7 +22,8 @@ public class ProfileCreation : MonoBehaviour
      * @unityParam
      * @since 17.10.29
      */
-	public InputField inputField;
+    [SerializeField]
+	private InputField inputField;
 
     /**
      * Init the input field.

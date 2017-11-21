@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
  * Restarter.
  *
  * @author Julien Delane
- * @version 17.10.25
+ * @version 17.11.19
  * @since 17.10.11
  */
 public class Restarter : MonoBehaviour
@@ -25,7 +25,8 @@ public class Restarter : MonoBehaviour
      * @unityParam
      * @since 17.10.11
      */
-    Animator animator;
+    [SerializeField]
+    private Animator animator;
 
     /**
      * Death clip.
@@ -33,7 +34,8 @@ public class Restarter : MonoBehaviour
      * @unityParam
      * @since 17.10.11
      */
-    public AudioClip clip;
+    [SerializeField]
+    private AudioClip clip;
 
     /**
      * Init animator.

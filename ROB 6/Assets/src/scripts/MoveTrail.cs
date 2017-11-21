@@ -7,7 +7,7 @@ using UnityEngine;
  *
  * @author Rémi Wickuler
  * @author Julien Delane
- * @version 17.10.17
+ * @version 17.11.19
  * @since 17.10.10
  */
 public class MoveTrail : MonoBehaviour
@@ -18,15 +18,8 @@ public class MoveTrail : MonoBehaviour
      * @unityParam
      * @since 17.10.10
      */
-    public float Speed = 50f;
-
-    /**
-     * Turret object.
-     *
-     * @unityParam
-     * @since 17.10.10
-     */
-    public GameObject turret;
+    [SerializeField]
+    private float Speed = 50f;
 
     /**
      * Move the trail.

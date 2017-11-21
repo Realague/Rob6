@@ -26,7 +26,8 @@ public class LangSelection : MonoBehaviour
 	 * @unityParam
 	 * @since 17.11.10
 	 */
-	public GameObject langPrefab;
+    [SerializeField]
+	private GameObject langPrefab;
 
 	/**
 	 * Transform parent.
@@ -34,7 +35,8 @@ public class LangSelection : MonoBehaviour
 	 * @unityParam
 	 * @since 17.11.10
 	 */
-	public Transform langParent;
+    [SerializeField]
+	private Transform langParent;
 
     /**
      * The index of the cursor.
@@ -49,7 +51,8 @@ public class LangSelection : MonoBehaviour
      * @unityParam
      * @since 17.11.11
      */
-    public GameObject cursor;
+    [SerializeField]
+    private GameObject cursor;
 
 	/**
      * The lang list.

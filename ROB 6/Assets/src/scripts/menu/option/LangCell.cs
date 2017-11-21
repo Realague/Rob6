@@ -18,7 +18,8 @@ public class LangCell : MonoBehaviour
   	 * @unityParam
      * @since 17.11.10
      */
-     public GameObject langName;
+    [SerializeField]
+    private GameObject langName;
 
     /**
      * Fill lang name.

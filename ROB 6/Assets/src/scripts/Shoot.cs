@@ -7,7 +7,7 @@ using UnityEngine;
  *
  * @author Rémi Wickuler
  * @author Julien Delane
- * @version 17.10.16
+ * @version 17.11.19
  * @since 17.10.11
  */
 public class Shoot : MonoBehaviour
@@ -18,7 +18,8 @@ public class Shoot : MonoBehaviour
      * @unityParam
      * @since 17.10.11
      */
-    public float speed = 100.0f;
+    [SerializeField]
+    private float speed = 100.0f;
 
     /**
      * Positions of the bullet.
@@ -26,7 +27,8 @@ public class Shoot : MonoBehaviour
      * @unityParam
      * @since 17.10.11
      */
-    public GameObject playerPosition;
+    [SerializeField]
+    private GameObject playerPosition;
 
     /**
      * Move the bullet.

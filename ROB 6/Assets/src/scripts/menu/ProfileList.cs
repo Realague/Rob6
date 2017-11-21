@@ -8,7 +8,7 @@ using UnityEngine.UI;
  * ProfileList.
  *
  * @author Julien Delane
- * @version 17.11.12
+ * @version 17.11.19
  * @since 17.11.04
  */
 public class ProfileList : MonoBehaviour
@@ -26,7 +26,8 @@ public class ProfileList : MonoBehaviour
 	 * @unityParam
 	 * @since 17.11.05
 	 */
-	public GameObject profilePrefab;
+    [SerializeField]
+	private GameObject profilePrefab;
 
 	/**
 	 * Transform parent.
@@ -34,7 +35,8 @@ public class ProfileList : MonoBehaviour
 	 * @unityParam
 	 * @since 17.11.05
 	 */
-	public Transform profileParent;
+    [SerializeField]
+	private Transform profileParent;
 
     /**
      * The index of the cursor.
@@ -49,7 +51,8 @@ public class ProfileList : MonoBehaviour
      * @unityParam
      * @since 17.11.05
      */
-    public GameObject cursor;
+    [SerializeField]
+    private GameObject cursor;
 
 	/**
      * The profile list.

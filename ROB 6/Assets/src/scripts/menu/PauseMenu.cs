@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
  * PauseMenu.
  *
  * @author Julien Delane
- * @version 17.11.12
+ * @version 17.11.19
  * @since 17.10.11
  */
 public class PauseMenu : MonoBehaviour
@@ -18,7 +18,7 @@ public class PauseMenu : MonoBehaviour
      *
      * @since 17.10.28
      */
-     private int i = 1;
+    private int i = 1;
 
     /**
      * The cursor.
@@ -26,7 +26,8 @@ public class PauseMenu : MonoBehaviour
      * @unityParam
      * @since 17.10.11
      */
-    public GameObject cursor;
+    [SerializeField]
+    private GameObject cursor;
 
     /**
      * The menu.
@@ -34,7 +35,8 @@ public class PauseMenu : MonoBehaviour
      * @unityParam
      * @since 17.10.11
      */
-    public GameObject menu;
+    [SerializeField]
+    private GameObject menu;
 
     /**
      * Define if the menu is hidden or not.

@@ -8,7 +8,7 @@ using UnityEngine;
  *
  * @author Rémi Wickuler
  * @author Julien Delane
- * @version 17.10.16
+ * @version 17.11.19
  * @since 17.10.11
  */
 public class Up : MonoBehaviour
@@ -33,7 +33,8 @@ public class Up : MonoBehaviour
      * @unityParam
      * @since 17.10.11
      */
-    public bool auto;
+    [SerializeField]
+    private bool auto;
 
     /**
      * Speed of the object.

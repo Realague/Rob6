@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
  *
  * @author Rémi Wickuler
  * @author Julien Delane
- * @version 17.10.23
+ * @version 17.11.19
  * @since 17.10.05
  */
  //TODO: rework the player manager inventory in this script??
@@ -17,9 +17,11 @@ public class PlayerManager : MonoBehaviour
     /**
      * The object spawn.
      *
+     * @unityParam
      * @since 17.10.05
      */
-    public GameObject spawn;
+    [SerializeField]
+    private GameObject spawn;
 
     /**
      * Current rob.
@@ -31,9 +33,11 @@ public class PlayerManager : MonoBehaviour
     /**
      * The list of rob.
      *
+     * @unityParam
      * @since 17.10.05
      */
-    public GameObject[] players;
+    [SerializeField]
+    private GameObject[] players;
 
     /**
      * The list of sprite.

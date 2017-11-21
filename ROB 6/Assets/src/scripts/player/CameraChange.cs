@@ -7,7 +7,7 @@ using UnityEngine;
  *
  * @author Rémi Wickuler
  * @author Julien Delane
- * @version 17.10.15
+ * @version 17.11.19
  * @since 17.10.05
  */
 public class CameraChange : MonoBehaviour
@@ -18,7 +18,7 @@ public class CameraChange : MonoBehaviour
     * @unityParam
     * @since 17.10.10
     */
-    public float timer;
+    private float timer;
 
    /**
     * Speed of the trail.
@@ -26,7 +26,7 @@ public class CameraChange : MonoBehaviour
     * @unityParam
     * @since 17.10.10
     */
-   public float speed = 0.3f;
+   private float speed = 0.3f;
 
    /**
     * Path to reach the targeted rob.
@@ -48,7 +48,8 @@ public class CameraChange : MonoBehaviour
     * @unityParam
     * @since 17.10.10
     */
-   public GameObject currentPlayer;
+   [SerializeField]
+   private GameObject currentPlayer;
 
    /**
     * TrailRenderer.

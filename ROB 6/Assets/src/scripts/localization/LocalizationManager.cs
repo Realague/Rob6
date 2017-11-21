@@ -7,7 +7,7 @@ using System.IO;
  * LocalizationManager.
  *
  * @author Julien Delane
- * @version 17.11.11
+ * @version 17.11.19
  * @since 17.10.14
  */
 public class LocalizationManager : MonoBehaviour
@@ -15,7 +15,6 @@ public class LocalizationManager : MonoBehaviour
     /**
      * Variable to reach this object from every where.
      *
-     * @unityParam
      * @since 17.10.14
      */
     public static LocalizationManager instance;
