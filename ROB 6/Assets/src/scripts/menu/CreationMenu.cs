@@ -8,7 +8,7 @@ using UnityEngine.UI;
  *
  * @author Rémi Wickuler
  * @author Julien Delane
- * @version 17.10.15
+ * @version 17.11.19
  * @since 17.10.05
  */
 public class CreationMenu : MonoBehaviour
@@ -26,7 +26,8 @@ public class CreationMenu : MonoBehaviour
      * @unityParam
      * @since 17.10.10
      */
-    public GameObject select;
+    [SerializeField]
+    private GameObject select;
 
     /**
      * List of GameObject player can create.
@@ -34,7 +35,8 @@ public class CreationMenu : MonoBehaviour
      * @unityParam
      * @since 17.10.10
      */
-    public GameObject[] create;
+    [SerializeField]
+    private GameObject[] create;
 
     /**
      * List of price to create object.
@@ -42,7 +44,8 @@ public class CreationMenu : MonoBehaviour
      * @unityParam
      * @since 17.10.10
      */
-    public int[] price;
+    [SerializeField]
+    private int[] price;
 
     /**
      * Index of the Cursor.
@@ -64,7 +67,8 @@ public class CreationMenu : MonoBehaviour
      * @unityParam
      * @since 17.10.10
      */
-    public GameObject spawnPoint;
+    [SerializeField]
+    private GameObject spawnPoint;
     
     /**
      * Initialize the camera and sprites for the image.

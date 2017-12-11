@@ -7,7 +7,7 @@ using System.IO;
  * LocalizationManager.
  *
  * @author Julien Delane
- * @version 17.10.22
+ * @version 17.11.19
  * @since 17.10.14
  */
 public class LocalizationManager : MonoBehaviour
@@ -15,7 +15,6 @@ public class LocalizationManager : MonoBehaviour
     /**
      * Variable to reach this object from every where.
      *
-     * @unityParam
      * @since 17.10.14
      */
     public static LocalizationManager instance;
@@ -61,8 +60,8 @@ public class LocalizationManager : MonoBehaviour
     public void LoadLocalizedText(string fileName)
     {
         localizedText = new Dictionary<string, string>();
-        string filePath = Path.Combine (Application.dataPath, "lang/" + fileName);
-        if (File.Exists (filePath))
+        string filePath = Application.dataPath + "/StreamingAssets/lang/" + fileName.Substring(0, fileName.Length - 1) + ".lang";
+        if (File.Exists(filePath))
 		{
             string[] data = File.ReadAllText(filePath).Split('\n');
 			string[] tmp;
@@ -78,7 +77,7 @@ public class LocalizationManager : MonoBehaviour
         }
 		else
         {
-            Debug.LogError("Cannot find file!");
+            Debug.LogError("Cannot find file! " + filePath);
         }
         isReady = true;
     }
@@ -92,7 +91,7 @@ public class LocalizationManager : MonoBehaviour
     public string GetLocalizedValue(string key)
     {
         string result;
-        if (localizedText.ContainsKey(key))
+        if (localizedText != null && localizedText.ContainsKey(key))
         {
             result = localizedText[key];
         }

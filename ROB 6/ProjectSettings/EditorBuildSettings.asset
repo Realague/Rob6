@@ -6,11 +6,20 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/scenes/NewMenu.unity
+    path: Assets/scenes/menu/MainMenu.unity
     guid: 06722437707659b478d6c4694b7a16c0
   - enabled: 1
-    path: Assets/scenes/OptionMenu.unity
+    path: Assets/scenes/menu/ProfileCreation.unity
+    guid: a08cb8cb4f15f684dbfb25fc56513a80
+  - enabled: 1
+    path: Assets/scenes/menu/ProfileList.unity
+    guid: aa3a4f9ac1ad9f44cb800694711cf22b
+  - enabled: 1
+    path: Assets/scenes/menu/OptionMenu.unity
     guid: 61847514d75d2af4297448faac784415
+  - enabled: 1
+    path: Assets/scenes/menu/option/LangSelection.unity
+    guid: 07d581472d7d0174db541d936afd6c90
   - enabled: 1
     path: Assets/scenes/Labo.unity
     guid: ad70249900e67f247a95700ca5d74738
@@ -21,7 +30,7 @@ EditorBuildSettings:
     path: Assets/scenes/Try2.unity
     guid: 03c665201fe0d3440bb0683cc52f28dc
   - enabled: 0
-    path: Assets/scenes/Menu.unity
+    path: 
     guid: 6fec17dffe553a840937a433bb028161
   - enabled: 0
     path: Assets/scenes/Control.unity
@@ -32,9 +41,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/_Scenes/rob.6.unity
     guid: 00000000000000000000000000000000
-  - enabled: 1
-    path: Assets/scenes/Localization.unity
+  - enabled: 0
+    path: 
     guid: d3d67d149b9a768428c0bb2eb0b820de
-  - enabled: 1
-    path: Assets/scenes/TestMenuLocalization.unity
+  - enabled: 0
+    path: 
     guid: 1040e4fdbbe0c3a40992c9cc3414bc78

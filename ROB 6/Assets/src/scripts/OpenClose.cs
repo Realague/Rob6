@@ -8,7 +8,7 @@ using UnityEngine.UI;
  *
  * @author Rémi Wickuler
  * @author Julien Delane
- * @version 17.10.26
+ * @version 17.11.19
  * @since 17.10.10
  */
 public class OpenClose : MonoBehaviour
@@ -55,7 +55,8 @@ public class OpenClose : MonoBehaviour
      * @unityParam
      * @since 17.10.10
      */
-    public AudioClip clip;
+    [SerializeField]
+    private AudioClip clip;
 
     /**
      * If true the player can only interact with the button one time.
@@ -63,7 +64,8 @@ public class OpenClose : MonoBehaviour
      * @unityParam
      * @since 17.10.10
      */
-    public bool openOnce = false;
+     [SerializeField]
+    private bool openOnce = false;
 
     /**
      * Distance of the movement of the game object.
@@ -72,7 +74,8 @@ public class OpenClose : MonoBehaviour
      * @unityParam
      * @since 17.10.10
      */
-    public float distance = 1f;
+    [SerializeField]
+    private float distance = 1f;
 
     /**
      * Define the time to travel the distance.
@@ -80,7 +83,8 @@ public class OpenClose : MonoBehaviour
      * @unityParam
      * @since 17.10.10
      */
-    public float timer = 1.5f;
+    [SerializeField]
+    private float timer = 1.5f;
 
     /**
      * Game object to move.
@@ -88,7 +92,8 @@ public class OpenClose : MonoBehaviour
      * @unityParam
      * @since 17.10.10
      */
-    public GameObject gate;
+    [SerializeField]
+    private GameObject gate;
 
     /**
      * Define which rob can open the gate.
@@ -96,7 +101,8 @@ public class OpenClose : MonoBehaviour
      * @unityParam
      * @since 17.10.10
      */
-    public bool protection;
+    [SerializeField]
+    private bool protection;
 
     /**
      * The text to display if we can't open the gate.
@@ -104,7 +110,8 @@ public class OpenClose : MonoBehaviour
      * @unityParam
      * @since 17.10.10
      */
-    public Text protectionText;
+    [SerializeField]
+    private Text protectionText;
 
     /**
      * Init the gate position.

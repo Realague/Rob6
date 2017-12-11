@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
  *
  * @author Rémi Wickuler
  * @author Julien Delane
- * @version 17.10.21
+ * @version 17.11.19
  * @since 17.10.10
  */
 public class PlayerController : MonoBehaviour
@@ -55,7 +55,8 @@ public class PlayerController : MonoBehaviour
      * @unityParam
      * @since 17.10.10
      */
-    public int jumpCount;
+    [SerializeField]
+    private int jumpCount;
 
     /**
      * Jump force.
@@ -63,7 +64,8 @@ public class PlayerController : MonoBehaviour
      * @unityParam
      * @since 17.10.10
      */
-    public float jumpForce = 1.0F;
+    [SerializeField]
+    private float jumpForce = 1.0F;
 
     /**
      * Player speed.
@@ -71,7 +73,8 @@ public class PlayerController : MonoBehaviour
      * @unityParam
      * @since 17.10.10
      */
-    public float speed = 1.0F;
+    [SerializeField]
+    private float speed = 1.0F;
 
     /**
      * Jump speed.
@@ -79,7 +82,8 @@ public class PlayerController : MonoBehaviour
      * @unityParam
      * @since 17.10.10
      */
-    public float jumpSpeed = 1.0F;
+    [SerializeField]
+    private float jumpSpeed = 1.0F;
 
     /**
      * Number of jump the player can performed without hit the ground.
@@ -87,7 +91,8 @@ public class PlayerController : MonoBehaviour
      * @unityParam
      * @since 17.10.10
      */
-    public int maxJump = 2;
+    [SerializeField]
+    private int maxJump = 2;
 
     /**
      * Define which layer is ground.
@@ -95,7 +100,8 @@ public class PlayerController : MonoBehaviour
      * @unityParam
      * @since 17.10.10
      */
-    public LayerMask whatIsGround;
+    [SerializeField]
+    private LayerMask whatIsGround;
 
     /**
      * List of sound we can play when he walk jump etc.
@@ -103,7 +109,8 @@ public class PlayerController : MonoBehaviour
      * @unityParam
      * @since 17.10.10
      */
-    public AudioClip[] sounds;
+    [SerializeField]
+    private AudioClip[] sounds;
 
     /**
      * Define if the player is facing right or left.
@@ -119,7 +126,8 @@ public class PlayerController : MonoBehaviour
      * @unityParam
      * @since 17.10.10
      */
-    public static float x;
+    [SerializeField]
+    private static float x;
 
     /**
      * Animator.
@@ -143,7 +151,8 @@ public class PlayerController : MonoBehaviour
      * @unityParam
      * @since 17.10.10
      */
-    public Text nbScrap;
+    [SerializeField]
+    private Text nbScrap;
 
     private int nb = 0;
     public static GameObject fly;

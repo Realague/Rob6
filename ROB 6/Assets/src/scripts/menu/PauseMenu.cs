@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
  * PauseMenu.
  *
  * @author Julien Delane
- * @version 17.10.28
+ * @version 17.11.19
  * @since 17.10.11
  */
 public class PauseMenu : MonoBehaviour
@@ -18,21 +18,7 @@ public class PauseMenu : MonoBehaviour
      *
      * @since 17.10.28
      */
-     private int i = 1;
-    
-    /**
-     * The button clip.
-     *
-     * @since 17.10.28
-     */
-    public AudioClip buttonClip;
-
-    /**
-     * The switch clip.
-     *
-     * @since 17.10.28
-     */
-    public AudioClip switchClip;
+    private int i = 1;
 
     /**
      * The cursor.
@@ -40,7 +26,8 @@ public class PauseMenu : MonoBehaviour
      * @unityParam
      * @since 17.10.11
      */
-    public GameObject cursor;
+    [SerializeField]
+    private GameObject cursor;
 
     /**
      * The menu.
@@ -48,7 +35,8 @@ public class PauseMenu : MonoBehaviour
      * @unityParam
      * @since 17.10.11
      */
-    public GameObject menu;
+    [SerializeField]
+    private GameObject menu;
 
     /**
      * Define if the menu is hidden or not.
@@ -58,16 +46,31 @@ public class PauseMenu : MonoBehaviour
     private bool active;
 
     /**
+     * The position of the cursor.
+     *
+     * @since 17.10.31
+     */
+    private float cursorPosition;
+
+    /**
+     * Offset between index.
+     *
+     * @since 17.10.31
+     */
+    private float offset = -250;
+
+    /**
      * Hide the menu when the level start.
      *
      * @since 17.10.11
      */
     private void Start()
     {
+        cursorPosition = cursor.transform.position.y;
         menu.SetActive(false);
         active = false;
     }
-	
+
     /**
      * Catch the different action in the pause menu.
      *
@@ -93,7 +96,7 @@ public class PauseMenu : MonoBehaviour
         {
             if (Input.GetKeyDown("s"))
             {
-                AudioSource.PlayClipAtPoint(switchClip, transform.position);
+                AudioSource.PlayClipAtPoint(ProfileScript.instance.switchClip, transform.position);
                 if (i == 0)
                 {
                     i = 1;
@@ -102,11 +105,11 @@ public class PauseMenu : MonoBehaviour
                 {
                     i--;
                 }
-                cursor.transform.position = new Vector2(cursor.transform.position.x, 550 + 250 * i);
+                cursor.transform.position = new Vector2(cursor.transform.position.x, cursorPosition + offset * i);
             }
             else if (Input.GetKeyDown("z"))
             {
-                AudioSource.PlayClipAtPoint(switchClip, transform.position);
+                AudioSource.PlayClipAtPoint(ProfileScript.instance.switchClip, transform.position);
                 if (i == 1)
                 {
                     i = 0;
@@ -115,7 +118,7 @@ public class PauseMenu : MonoBehaviour
                 {
                     ++i;
                 }
-                cursor.transform.position = new Vector2(cursor.transform.position.x, 550 + 250 * i);
+                cursor.transform.position = new Vector2(cursor.transform.position.x, cursorPosition + offset * i);
             }
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -135,14 +138,15 @@ public class PauseMenu : MonoBehaviour
         {
             case 0:
                 PlayerController.stop = false;
-                AudioSource.PlayClipAtPoint(buttonClip, transform.position);
-                yield return new WaitForSecondsRealtime(buttonClip.length);
+                AudioSource.PlayClipAtPoint(ProfileScript.instance.buttonClip, transform.position);
+                yield return new WaitForSecondsRealtime(ProfileScript.instance.buttonClip.length);
+                ProfileScript.instance.playerProfile.updateProfile();
                 Time.timeScale = 1;
                 SceneManager.LoadScene(0);
                 break;
             case 1:
-                AudioSource.PlayClipAtPoint(buttonClip, transform.position);
-                yield return new WaitForSecondsRealtime(buttonClip.length);
+                AudioSource.PlayClipAtPoint(ProfileScript.instance.buttonClip, transform.position);
+                yield return new WaitForSecondsRealtime(ProfileScript.instance.buttonClip.length);
                 Time.timeScale = 1;
                 menu.SetActive(false);
                 active = false;
