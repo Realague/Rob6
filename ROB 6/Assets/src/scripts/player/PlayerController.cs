@@ -158,6 +158,14 @@ public class PlayerController : MonoBehaviour
     public static bool stop = false;
 
     /**
+     * The multiplicator for the second jump 
+     *
+     * @since 17.10.30   
+     */
+
+    private float mult;
+
+    /**
      * Init the variable at the beginning of the level.
      *
      * @since 17.10.10
@@ -194,7 +202,7 @@ public class PlayerController : MonoBehaviour
                 run = true;
                 facingRight = true;
             }
-            else if (Input.GetKey(KeyCode.Q))
+            else if (Input.GetKey(KeyCode.A))
             {
                 x = -1;
                 facingRight = false;
@@ -205,7 +213,7 @@ public class PlayerController : MonoBehaviour
                 x = 0;
                 run = false;
             }
-            if (transform.name.CompareTo("Rob.I") == 0 || transform.name.CompareTo("Rob.B") == 0)
+            if (transform.name.CompareTo("Rob.I") == 0 || transform.name.CompareTo("Rob.B") == 0 || transform.name.CompareTo("Rob.6") == 0 )
             {
                 anim.SetBool("run", run);
             }
@@ -286,6 +294,7 @@ public class PlayerController : MonoBehaviour
      * Jump management.
      *
      * @since 17.10.10
+     * @update 17.10.30
      */
     private void FixedUpdate()
     {
@@ -306,7 +315,11 @@ public class PlayerController : MonoBehaviour
             //if spacebar is pressed and the player can jump do a jump\\
             if (jump == true && jumpCount < maxJump)
             {
-                rigidBody.AddForce(new Vector2(0, 100 * jumpForce));
+                if (jumpCount == 1)
+                    mult = 1.4f;
+                else
+                    mult = 1;
+                rigidBody.AddForce(new Vector2(0, 100 * jumpForce * mult));
                 jumpCount++;
             }
 

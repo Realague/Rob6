@@ -93,11 +93,11 @@ public class CreationMenu : MonoBehaviour
         {
             PlayerController.stop = false;
         }
-        if (PlayerManager.current.name.CompareTo("Rob.I") == 1 && Input.GetKeyDown("e") && canvas.enabled == false)
+        if (PlayerManager.current.name.CompareTo("Rob.I") == 0 && Input.GetKeyDown("e") && canvas.enabled == false)
         {
             canvas.enabled = true;
         }
-        else if (PlayerManager.current.name.CompareTo("Rob.I") == 1 && Input.GetKeyDown("e") && canvas.enabled == true)
+        else if (PlayerManager.current.name.CompareTo("Rob.I") == 0 && Input.GetKeyDown("e") && canvas.enabled == true)
         {
             canvas.enabled = false;
         }
